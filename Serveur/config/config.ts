@@ -1,9 +1,9 @@
 
 
 
-const MONGO_USERNAME = "ismail";
-const MONGO_PASSWORD = "1234";
-const MONGO_HOST = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@log3900-102-mongo.wiq43.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+const MONGO_USERNAME = "";
+const MONGO_PASSWORD = "";
+const MONGO_HOST = ``;
 
 const MONGO = {
     host: MONGO_HOST,
