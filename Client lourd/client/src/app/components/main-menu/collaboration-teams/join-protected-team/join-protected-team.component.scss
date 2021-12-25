@@ -1,0 +1,51 @@
+.pass-container {
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.pass-search {
+    color: #3700b3;
+}
+
+.pass-icon {
+    color: black;
+}
+
+.cancel-button{
+    margin-top:auto;
+    display:inline;
+    float:left;
+    color: #6200ee;
+    font: 15px Arial, sans-serif;
+    font-weight: bold;
+}
+
+.cancel-button:hover{
+    color: #ec613e;
+    cursor:pointer;
+}
+
+.join-button{
+    margin:0;
+    display:inline;
+    float:right;
+    color: #3700b3;
+    font: 15px Arial, sans-serif;
+    font-weight: bold;
+}
+
+.join-button:hover{
+    color: #3ef108;
+    cursor:pointer;
+}
+
+::ng-deep .mat-form-field-label{
+    color: #3700b3 !important;
+}
+::ng-deep .mat-focused .mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color: #3700b3 !important;;
+}

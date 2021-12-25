@@ -1,0 +1,73 @@
+<h1 *ngIf="!data.isRegister" style="text-align: center; text-decoration: underline; font-family: sans-serif; font-weight: bold;" [ngStyle]="{'color': this.themesService.getTextColor()}">Choisir ou télécharger un avatar</h1>
+<h1 *ngIf="data.isRegister" style="text-align: center; text-decoration: underline; font-family: sans-serif; font-weight: bold; color: white">Choisir ou télécharger un avatar</h1>
+<div class="avatar" *ngIf="!data.isRegister">
+    <div class="avatar-container" [ngStyle]="{'background': this.themesService.getContainerFooterButtonsColor()}">
+        <img class="avatars" (click)='chooseAvatarFromDefaults($event)' src="https://firebasestorage.googleapis.com/v0/b/log3900-102.appspot.com/o/pepe%2Fpeepolove.png?alt=media&token=e2f5c89a-5479-43ae-bf3e-7db3ab7de856"/>
+        <img class="avatars" (click)='chooseAvatarFromDefaults($event)' src="https://firebasestorage.googleapis.com/v0/b/log3900-102.appspot.com/o/pepe%2FFeelsOkayMan.png?alt=media&token=52209eff-0eda-463b-bc36-6234ab5c3565"/>
+        <img class="avatars" (click)='chooseAvatarFromDefaults($event)' src="https://firebasestorage.googleapis.com/v0/b/log3900-102.appspot.com/o/pepe%2FPOGGERS.png?alt=media&token=7113b777-a34e-43b1-9b25-d3d926aeab51"/>
+        <img class="avatars" (click)='chooseAvatarFromDefaults($event)' src="https://firebasestorage.googleapis.com/v0/b/log3900-102.appspot.com/o/pepe%2FPepega.png?alt=media&token=41746437-ac6c-4527-9428-0bb895e66ccc"/>
+        <img class="avatars" (click)='chooseAvatarFromDefaults($event)' src="https://firebasestorage.googleapis.com/v0/b/log3900-102.appspot.com/o/pepe%2FPepoThink.png?alt=media&token=e0a6482a-0f94-4231-a6d4-fe248c608e23"/>
+        
+        <img class="avatars" (click)='chooseAvatarFromDefaults($event)' src="https://firebasestorage.googleapis.com/v0/b/log3900-102.appspot.com/o/pepe%2FSusge.png?alt=media&token=e320dc08-007c-4328-8e6d-c5385f5c04c7"/>
+        <img class="avatars" (click)='chooseAvatarFromDefaults($event)' src="https://firebasestorage.googleapis.com/v0/b/log3900-102.appspot.com/o/pepe%2FmonkaHmm.png?alt=media&token=c843fa8a-37a7-4157-a24a-1d010e07137e"/>
+        <img class="avatars" (click)='chooseAvatarFromDefaults($event)' src="https://firebasestorage.googleapis.com/v0/b/log3900-102.appspot.com/o/pepe%2FpeepoHappy.png?alt=media&token=08020e51-8448-4edb-bce4-d92efd061b04"/>
+        <img class="avatars" (click)='chooseAvatarFromDefaults($event)' src="https://firebasestorage.googleapis.com/v0/b/log3900-102.appspot.com/o/pepe%2FpeepoWTF.png?alt=media&token=80a8acb1-ef33-4663-9602-0ca5f6892efc"/>
+        <img class="avatars" (click)='chooseAvatarFromDefaults($event)' src="https://firebasestorage.googleapis.com/v0/b/log3900-102.appspot.com/o/pepe%2Fpeepolove.png?alt=media&token=e2f5c89a-5479-43ae-bf3e-7db3ab7de856"/>
+    </div>
+
+    <div class="avatar-chosen" [ngStyle]="{'background': this.themesService.getContainerFooterButtonsColor()}">
+        <img id="image-chosen" src="https://firebasestorage.googleapis.com/v0/b/log3900-102.appspot.com/o/pepe%2Fpeepolove.png?alt=media&token=e2f5c89a-5479-43ae-bf3e-7db3ab7de856"/>
+
+        <div class="select-image">
+            <label class="custom-file-upload">
+                <input #imageInput
+                        type="file"
+                        accept="image/*"
+                        (change)="processFile(imageInput)"/>
+                Téléverser une image
+            </label>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="avatar" *ngIf="data.isRegister">
+    <div class="avatar-container">
+        <img class="avatars" (click)='chooseAvatarFromDefaults($event)' src="https://firebasestorage.googleapis.com/v0/b/log3900-102.appspot.com/o/pepe%2Fpeepolove.png?alt=media&token=e2f5c89a-5479-43ae-bf3e-7db3ab7de856"/>
+        <img class="avatars" (click)='chooseAvatarFromDefaults($event)' src="https://firebasestorage.googleapis.com/v0/b/log3900-102.appspot.com/o/pepe%2FFeelsOkayMan.png?alt=media&token=52209eff-0eda-463b-bc36-6234ab5c3565"/>
+        <img class="avatars" (click)='chooseAvatarFromDefaults($event)' src="https://firebasestorage.googleapis.com/v0/b/log3900-102.appspot.com/o/pepe%2FPOGGERS.png?alt=media&token=7113b777-a34e-43b1-9b25-d3d926aeab51"/>
+        <img class="avatars" (click)='chooseAvatarFromDefaults($event)' src="https://firebasestorage.googleapis.com/v0/b/log3900-102.appspot.com/o/pepe%2FPepega.png?alt=media&token=41746437-ac6c-4527-9428-0bb895e66ccc"/>
+        <img class="avatars" (click)='chooseAvatarFromDefaults($event)' src="https://firebasestorage.googleapis.com/v0/b/log3900-102.appspot.com/o/pepe%2FPepoThink.png?alt=media&token=e0a6482a-0f94-4231-a6d4-fe248c608e23"/>
+        
+        <img class="avatars" (click)='chooseAvatarFromDefaults($event)' src="https://firebasestorage.googleapis.com/v0/b/log3900-102.appspot.com/o/pepe%2FSusge.png?alt=media&token=e320dc08-007c-4328-8e6d-c5385f5c04c7"/>
+        <img class="avatars" (click)='chooseAvatarFromDefaults($event)' src="https://firebasestorage.googleapis.com/v0/b/log3900-102.appspot.com/o/pepe%2FmonkaHmm.png?alt=media&token=c843fa8a-37a7-4157-a24a-1d010e07137e"/>
+        <img class="avatars" (click)='chooseAvatarFromDefaults($event)' src="https://firebasestorage.googleapis.com/v0/b/log3900-102.appspot.com/o/pepe%2FpeepoHappy.png?alt=media&token=08020e51-8448-4edb-bce4-d92efd061b04"/>
+        <img class="avatars" (click)='chooseAvatarFromDefaults($event)' src="https://firebasestorage.googleapis.com/v0/b/log3900-102.appspot.com/o/pepe%2FpeepoWTF.png?alt=media&token=80a8acb1-ef33-4663-9602-0ca5f6892efc"/>
+        <img class="avatars" (click)='chooseAvatarFromDefaults($event)' src="https://firebasestorage.googleapis.com/v0/b/log3900-102.appspot.com/o/pepe%2Fpeepolove.png?alt=media&token=e2f5c89a-5479-43ae-bf3e-7db3ab7de856"/>
+    </div>
+
+    <div class="avatar-chosen">
+        <img id="image-chosen" src="https://firebasestorage.googleapis.com/v0/b/log3900-102.appspot.com/o/pepe%2Fpeepolove.png?alt=media&token=e2f5c89a-5479-43ae-bf3e-7db3ab7de856"/>
+
+        <div class="select-image">
+            <label class="custom-file-upload">
+                <input #imageInput
+                        type="file"
+                        accept="image/*"
+                        (change)="processFile(imageInput)"/>
+                        Téléverser une image
+            </label>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div mat-dialog-actions *ngIf="!data.isRegister">
+    <button class="dialog-button" mat-stroked-button (click)="closeWindow()" [ngStyle]="{'background': this.themesService.getContainerFooterButtonsColor(), 'color': this.themesService.getTextColor()}">Appliquer</button>
+</div>
+<div mat-dialog-actions *ngIf="data.isRegister">
+    <button class="dialog-button" mat-stroked-button (click)="closeWindow()">Appliquer</button>
+</div>

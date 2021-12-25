@@ -1,0 +1,386 @@
+.gallery-container-header {
+    width: 100%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    text-align: center;
+    display: inline-block;
+    //height: 10%;
+    font-size: 50px;
+    //border-bottom: 5px solid rgba(139,113,197);
+
+    h1 {
+        display: inline;
+        font-size: 70px;
+        //background: linear-gradient(180deg, rgb(255, 255, 255) 0%, rgb(244, 179, 255) 40%, rgb(202, 1, 209) 100%);
+        //background-clip: text;
+        //-webkit-text-fill-color: transparent;
+        font-family: sans-serif;
+        font-weight: bold;
+        //@error: white;
+        margin-left: 4.5%;
+    }
+    .addDrawing-btn {
+        margin-right: 1%;
+        margin-top: 0.25%;
+        //background-color: rgb(233, 57, 116);
+        background-color: rgb(76, 0, 255);
+        border: none;
+        color: white;
+        padding: 16px 20px;
+        cursor: pointer;
+        border-radius: 50%;
+        box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+        opacity: 0.8;
+        transition: 0.5s;
+        float: right;
+
+        em {
+            font-size: 45px;
+        }
+    }
+    .addDrawing-btn:hover {
+        transform: scale(1.1, 1.1);
+        opacity: 1;
+    }
+}
+
+.gallery-container-filter {
+    width: 100%;
+    height: 10%;
+}
+
+.filter-choices {
+    margin: 0 10px;
+}
+
+#choices-input {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 39%;
+    display: block;
+}
+
+#filter-input {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 42%;
+    display: block;
+}
+
+.gallery-container-content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 75%;
+    width: 100%;
+    overflow-y: auto;
+    
+    .collab-team {
+        //text-align: center;
+        font-size: 25px;
+        //padding: 2%;
+        //height: 10.0%;
+        width: auto;
+        min-width: 50%;
+        max-width: 60%;
+        //padding-right: 3%;
+        //padding-left: 3%;
+        margin-top: 1.5%;
+        //margin-left: 3%;
+        //background-color:  rgba(98,0,238);
+        color: rgb(18, 16, 22);
+        border-radius: 30px;
+        transition: 0.5s;
+
+        .teams-name {
+            //text-align: center;
+            width: 100%;
+            padding-top: 2%;
+            padding-bottom: 1%;
+            display: flex;
+            align-items: center;
+            //flex-direction: column;
+            font-size: 50px;
+
+            span.name {
+                width: auto;
+                flex: 1;
+                text-align: center;
+                margin:0 20px 0px 20px;
+            }
+
+            em.x {
+                color: red;
+                float: left;
+                font-size: 60px;
+                transition: 0.5s;
+                margin-left: 1.5%;
+                flex: 0.1;
+            }
+
+            em.x:hover{
+                cursor: pointer;
+                transform: rotateZ(360deg) scale(1.25, 1.25);
+            }
+
+            em.out {
+                color: red;
+                float: left;
+                font-size: 60px;
+                transition: 0.4s;
+                margin-left: 1.5%;
+                flex: 0.1;
+            }
+
+            em.out:hover{
+                cursor: pointer;
+                transform: rotateZ(360deg) scale(1.25, 1.25);
+            }
+
+
+            .members-and-button {
+                display: flex;
+                float: right;
+                //width: auto;
+                flex: 0.15;
+                
+    
+                .amount-members {
+                    //display: inline-block;
+                    //margin-right: 5%;
+                    //height: auto;
+                    margin-top: 8%;
+                    font-size: 30px;
+                    //flex:0.5;
+                    flex: 1;
+                }
+
+                .addDrawing-btn {
+                    //flex:1;
+                    //margin-right: 1%;
+                    //background-color: rgba(98,0,238);
+                    background-color: transparent;
+                    border: none;
+                    color: white;
+                    padding: 5px 15px;
+                    cursor: pointer;
+                    border-radius: 40%;
+                    font-size: 40px;
+                    opacity: 0.8;
+                    transition: 0.5s;
+                    margin-right: 10px;
+                    flex: 1;
+                    
+                }
+                .addDrawing-btn:hover {
+                    background-color: rgba(238, 174, 181, 0.767);
+                    opacity: 1;
+                }
+            }
+
+        }
+        .teams-scrolldown {
+            width: 100%;
+            //background-color: #0051A1;
+            //display: flex;
+            //flex-direction: column;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            //overflow-wrap: break-word;
+
+            .bio {
+                width: 100%;
+                border-bottom: 1px solid black;
+                border-left: 1px solid black;
+                border-right: 1px solid black;
+                border-top: 2px solid black;
+                display: flex;
+                flex-direction: column;
+
+                .bio-title{
+                    text-align: center;
+                }
+
+                .bio-text{
+                    width: 96%;
+                    padding-left: 2%;
+                    padding-right: 2%;
+                    margin-bottom: 2%;
+                    word-break: break-all;
+                }
+            }
+            .teams-users {
+                width: 100%;
+                border: 1px solid black;
+                border-bottom-left-radius: 30px;
+                border-bottom-right-radius: 30px;
+
+                .users-title {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                    p {
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+                
+                .users_container {
+                    width: 95%;
+                    padding-left: 2.5%;
+                    padding-bottom: 2%;
+                    //text-align: center;
+                    display: grid;
+                    grid-auto-flow: row;
+                    grid-template-columns: repeat(3, 1fr);
+                    grid-gap: 20px;
+                    
+                    .users {
+                        width: 100%;
+                        border-radius: 10px;
+                        text-align: center;
+                        //display: flex;
+                        //align-items: left;
+                        //flex-direction: column;
+                        //margin-left: 5%;
+                        p {
+                            display: flex;
+                            align-items: center;
+                            margin-left: 6%;
+                            
+                            .dot {
+                                height: 10px;
+                                width: 10px;
+                                border-radius: 50%;
+                                float: left;
+                                margin-right: 10px;
+                            }
+                            .dot-red {
+                            background-color: red;
+                            }
+                            .dot-yellow {
+                                background-color: yellow;
+                            }
+                            .dot-green {
+                            background-color: rgba(21, 255, 0, 0.979);
+                            }   
+                        }
+                    }
+                }
+                    
+            }
+        }
+    }
+
+    .collab-team:hover {
+        transform: scale(1.11, 1.05);
+    }
+
+    .collab-team:hover .addDrawing-btn {
+        animation: translation 1.5s infinite linear;
+    }
+
+    @keyframes translation {
+        50% {
+          transform: translateY(10px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+    }
+
+    .collab-join-team {
+        font-size: 25px;
+        width: 50%;
+        margin-top: 1%;
+        //background-color: rgba(98,0,238);
+        color: rgb(18, 16, 22);
+        border-radius: 30px;
+        transition: 0.5s;
+
+        .teams-name {
+            text-align: center;
+            width: 100%;
+            padding-top: 2%;
+            padding-bottom: 1%;
+            text-align: center;
+            display: inline-block;
+            font-size: 50px;
+
+            .members-and-button {
+                float: right;
+                width: 20%;
+    
+                .amount-members {
+                    display: inline-block;
+                    margin-top: 0;
+                    margin-bottom: 0;
+                    margin-right: 12%;
+                    font-size: 30px;
+                }
+
+                .addDrawing-btn {
+                    margin-right: 1%;
+                    background-color: transparent;
+                    border: none;
+                    color: white;
+                    padding: 10px 20px;
+                    cursor: pointer;
+                    border-radius: 40%;
+                    font-size: 40px;
+                    opacity: 0.8;
+                    transition: 0.5s;
+                }
+                .addDrawing-btn:hover {
+                    background-color: rgb(238, 174, 182);
+                    opacity: 1;
+                }
+            }
+
+        }
+    }
+
+    .collab-join-team:hover {
+        transform: scale(1.11, 1.05);
+    }
+
+    .collab-join-team:hover .addDrawing-btn {
+        animation: scale 1.5s infinite linear;
+    }
+    @keyframes scale {
+        50% {
+          transform: scale(1.25, 1.25);
+        }
+        100% {
+          transform: scale(1, 1);
+        }
+    }
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgb(128, 128, 128); 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(155, 2, 175); 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(120, 0, 136, 0.726); 
+  }
+
+
+  ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: rgb(241, 141, 174) !important;
+  }

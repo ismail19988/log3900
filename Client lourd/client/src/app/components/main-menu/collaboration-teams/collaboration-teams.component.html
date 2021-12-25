@@ -1,0 +1,78 @@
+<div class="gallery-container-header" [ngStyle]="{'border-bottom' : '5px solid' + this.themesService.getShadowBox()}">
+    <h1 *ngIf="this.themesService.getCurrentTheme()!= 'light'" style="color:white;">Équipes de collaboration</h1>
+    <h1 *ngIf="this.themesService.getCurrentTheme() == 'light'" style="color:black;">Équipes de collaboration</h1>
+    <button  class="addDrawing-btn" matTooltip="Créer une équipe de collaboration" matTooltipPosition="left" (click)="openCreateTeamDialog()">
+        <em class="fas fa-plus"></em>
+    </button>
+</div>
+
+<div class="gallery-container-filter">
+    <mat-radio-group [(ngModel)]="labelPosition" id="choices-input">
+        <mat-radio-button class="filter-choices" value="after" [ngStyle]="{'color': this.themesService.getTextColor()}">Mes équipes</mat-radio-button>
+        <mat-radio-button class="filter-choices" value="before" [ngStyle]="{'color': this.themesService.getTextColor()}">Équipes disponibles</mat-radio-button>
+    </mat-radio-group>
+    <mat-checkbox id="filter-input" [(ngModel)]="filterProtected" (ngModelChange)="filterOutProtected()" [ngStyle]="{'color': this.themesService.getTextColor()}">Filter les équipes non-protégées</mat-checkbox>
+</div>
+
+<div class="gallery-container-content" *ngIf="labelPosition == 'after'">
+    <div class="collab-team" *ngFor="let team of this.myTeams" [ngStyle]="{'background': this.themesService.getContainerContentButtonsColor()}">
+        <div class="teams-name">
+            <em class="fas fa-times x" matPreffix *ngIf="team.owner != this.userService.getCurrentUsername()" matTooltip="Sortir de l'équipe" matTooltipPosition="right" (click)="leaveTeam(team)">
+                
+            </em>
+            <em class="fas fa-sign-out-alt out" matPreffix *ngIf="team.owner == this.userService.getCurrentUsername()" matTooltip="Fermer l'équipe" matTooltipPosition="right" (click)="closeTeam(team)">
+                
+            </em>
+
+            <span class="name" [ngStyle]="{'color': this.themesService.getTextColor()}"> {{team.name}} </span>
+
+            <div class="members-and-button">
+                <span class="amount-members" [ngStyle]="{'color': this.themesService.getTextColor()}">{{team.users.length}}/{{team.maxUsers}}</span>
+                <button class="addDrawing-btn" matTooltip="{{team.name}}" matTooltipPosition="left" (click)="openScrollDown(team)">
+                    <em class="fa fa-angle-double-down down" *ngIf="showScrollDown != team.name" [ngStyle]="{'color': this.themesService.getTextColor()}"></em>
+                    <em class="fa fa-angle-double-up up" *ngIf="showScrollDown == team.name" [ngStyle]="{'color': this.themesService.getTextColor()}"></em>
+                </button>
+            </div>
+        </div>
+        <div id="team.name" class="teams-scrolldown" *ngIf="showScrollDown == team.name" [@inOutAnimation] [ngStyle]="{'background': this.themesService.getCollabTeamScrollDown()}">
+            <div class="bio">
+                <p class="bio-title" [ngStyle]="{'color': this.themesService.getTextColor()}"><u>Bio de l'équipe:</u></p>
+                    <div class="bio-text" [ngStyle]="{'color': this.themesService.getTextColor()}">
+                        {{team.bio}}
+                    </div>
+            </div>
+
+            <div class="teams-users">
+                <div class="users-title" [ngStyle]="{'color': this.themesService.getTextColor()}">
+                    <p><u>Membres de l'équipe:</u></p>
+                </div>
+
+                <div class="users_container">
+                    <div class="users" *ngFor="let user of this.userList" [ngStyle]="{'color': this.themesService.getTextColor(), 'background': this.themesService.getContainerContentButtonsColor()}">
+                        <p>
+                            <span class ="dot dot-red" *ngIf="user.status == 'disconnected'" matTooltip="Déconnecté" matTooltipPosition="left"></span>
+                            <span class ="dot dot-yellow" *ngIf="user.status == 'busy'" matTooltip="Occupé" matTooltipPosition="left"></span>
+                            <span class ="dot dot-green" *ngIf="user.status == 'connected'" matTooltip="Connecté" matTooltipPosition="left"></span>
+    
+                            <span>{{user.name}}</span>
+                        </p> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="gallery-container-content" *ngIf="labelPosition == 'before'">
+    <div class="collab-join-team" *ngFor="let team of this.availableTeams" [ngStyle]="{'background': this.themesService.getContainerContentButtonsColor()}">
+        <div class="teams-name">
+            {{team.name}}
+            <div class="members-and-button">
+                <p class="amount-members">{{team.users.length}}/{{team.maxUsers}}</p>
+                <button class="addDrawing-btn" matTooltip="{{team.name}}" matTooltipPosition="left" (click)="attemptJoinTeam(team)">
+                    <em class="fa fa-plus"></em>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

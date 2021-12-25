@@ -1,0 +1,46 @@
+<h1 mat-dialog-title>Création de dessin</h1>
+<div mat-dialog-content>
+    <h3>Dimensions :</h3>
+    <div class="container">
+        <p>Largeur :</p>
+        <input type="number" matInput [(ngModel)]="this.size.width" (keydown)="updateNumber($event, this.size.width)"/>
+        <p>px</p>
+    </div>
+    <div class="container">
+        <p>Hauteur :</p>
+        <input type="number" matInput [(ngModel)]="this.size.height" (keydown)="updateNumber($event, this.size.height)"/>
+        <p>px</p>
+    </div>
+    <h3>Couleur :</h3>
+
+    <div *ngFor="let color of this.paletteColors" class="colorContainer">
+        <div [style.background-color]="color" class="color border" (click)="palColor(color)"></div>
+    </div>
+    <div class="row">
+        <div class="half">
+            
+
+            <div class="container">
+                <p>R : </p>
+                <input type="number" class="rgb" [(ngModel)]="this.color.r" (keyup)="updateRGB()" />
+            </div>
+            <div class="container">
+                <p>G : </p>
+                <input type="number" class="rgb" [(ngModel)]="this.color.g" (keyup)="updateRGB()" />
+            </div>
+            <div class="container">
+                <p>B : </p>
+                <input type="number" class="rgb" [(ngModel)]="this.color.b" (keyup)="updateRGB()" />
+            </div>
+            <div class="container">
+                <p>Hex : </p>
+                <input id="hex" type="text" matInput [(ngModel)]="this.color.hex" />
+            </div>
+        </div>
+        <div class="half big border" [style.background-color]="this.color.hex"></div>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-stroked-button (click)="closeWindow()">Annuler</button>
+    <button mat-stroked-button (click)="createDrawing()" cdkFocusInitial>Créer</button>
+</div>

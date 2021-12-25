@@ -1,0 +1,14 @@
+<h1 style="text-align: center; font: sans-serif;text-decoration: underline; color: rgb(0, 0, 0);">Rechercher un canal:</h1>
+
+<div class="search-container">
+    <mat-form-field class="example-full-width">
+        <input class="room-filter" [(ngModel)]="this.filterSearch" type="tel" matInput placeholder="Recherche" name= "search" (keyup)="updateAvailableRoom($event)">
+    </mat-form-field>
+</div>
+
+<div class="chatbox__rooms" *ngFor="let room of roomList" (click)="chooseRoom(room)" [ngStyle]="{'background': this.themesService.getContainerContentButtonsColor()}">
+    <mat-icon matSuffix>add_circle</mat-icon>
+    <p> 
+        {{ room }}
+    </p>
+</div>

@@ -1,0 +1,507 @@
+// Side nav options and functions
+.sidenav a {
+    padding: 8px 0px 8px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+}
+
+.undo-redo {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: #818181;
+    display: block;
+}
+
+.undo-redo:hover {
+    color: #f1f1f1;
+    cursor: pointer;
+}
+
+// Side nav options and functions when moused over
+.sidenav a:hover {
+    color: #f1f1f1;
+    cursor: pointer;
+}
+
+// Div containing all the elements of "Vue du dessin"
+.Canvas {
+    height: 100%;
+    width: 100%;
+    background-color: #ccc;
+}
+
+// Div containing all the options, functions and pannels
+.sidenav {
+    position: fixed;
+    display: table;
+    height: 100%;
+    width: 50px;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding: 10px 0px;
+}
+
+// Div containing the drawing space
+.WorkingSpace {
+    position: absolute;
+    padding: 10px;
+    height: calc(100% - 20px);
+    right: 0px;
+    width: calc(100% - 70px);
+    overflow: overlay;
+    transition: width 1s ease;
+}
+
+// Scrollbars parameters
+.WorkingSpace::-webkit-scrollbar {
+    background-color: transparent;
+    width: 10px;
+    height: 10px;
+}
+
+.WorkingSpace::-webkit-scrollbar-thumb {
+    background-color: hotpink;
+    border-radius: 10px;
+}
+
+.WorkingSpace::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+
+// Workingspace when a panel is opened
+.smallWorkingSpace {
+    margin-left: 250px;
+    width: calc(100% - 320px);
+}
+
+// Panel containing the tools and their settings
+.ToolPanel { 
+    position: absolute;
+    top: 0px;
+    background-color: #333;
+    left: 50px;
+    width: 0px;
+    z-index: 0;
+    overflow-x: hidden;
+    height: 100%;
+    text-align: center;
+    transition: width 1s ease;
+    color: white;
+    box-shadow: 3px 3px 10px #555555;
+}
+
+// Content of the panel
+.content {
+    user-select: none; 
+    position: absolute;
+    right: 0px;
+    width: 250px;
+    height: 100%;
+}
+
+// Option when selected, whether the panel is closed or opened
+.currentOption a , .currentOptionShowned a{
+    color: hotpink;
+}
+
+// Tool panel when opened
+.currentOptionShowned .ToolPanel {
+    width: 250px;
+    z-index: 1;
+}
+
+.selection-buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 115%;
+    left:0px;
+    bottom:0px;
+}
+
+
+// Button to select tool, shape, selection, etc.
+.selection-erase {
+    padding: 10px;
+    border: 0;
+    width: 40%;
+    margin-bottom: 20px;
+    margin-left: 65px;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    font-family: sans-serif;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: #f51616;
+}
+
+// Button when mouse over
+.selection-erase:hover{
+    background-color: #ee5449;
+    transform: scale(1.1, 1.1);
+    color: white;
+    cursor: pointer;
+}
+
+// Button when clicked
+.selection-erase:active{
+    background-color: hotpink;
+    color: white;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.selection-button {
+    border: 0;
+    width: 115px;
+    height: 50px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    font-family: sans-serif;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: #6200ee;
+
+    span{
+        margin-left: 10%; 
+    }
+
+    .icon{
+        margin-left: 20%;
+    }
+}
+
+// Button when mouse over
+.selection-button:hover{
+    background-color: #3700b3;
+    transform: scale(1.1, 1.1);
+    color: white;
+    cursor: pointer;
+}
+
+// Button when clicked
+.selection-button:active{
+    background-color: hotpink;
+    color: white;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+// Button to select tool, shape, selection, etc.
+.drawing-button {
+    padding: 10px;
+    border: 0;
+    width: 70%;
+    margin: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    font-size: 20px;
+    border-radius: 5px;
+    box-shadow: 0 9px #4300a2;
+    background-color: #6200ee;
+}
+
+// Button when mouse over
+.drawing-button:hover{
+    background-color: #3700b3;
+    color: white;
+    cursor: pointer;
+}
+
+// Button when clicked
+.drawing-button:active{
+    background-color: hotpink;
+    color: white;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+// Button for setting new drawing verison
+.drawing-version-button {
+    padding: 10px;
+    border: 0;
+    width: 75%;
+    margin: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    font-size: 15px;
+    font-family: sans-serif;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: #0bf10b;
+}
+
+// Button when mouse over
+.drawing-version-button:hover{
+    background-color: #26970a;
+    transform: scale(1.1, 1.1);
+    color: white;
+    cursor: pointer;
+}
+
+// Button when clicked
+.drawing-version-button:active{
+    background-color: hotpink;
+    color: white;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.drawing-version-container {
+    width: 85%;
+    height: auto;
+    max-height: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-color: white;
+    overflow-y: auto;
+    margin-top: 5%;
+}
+
+.drawing-version-child {
+    width: 90%;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    font-size: 15px;
+    font-family: sans-serif;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: #6200ee;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.drawing-version-child:hover{
+    background-color: #9700fc;
+    transform: scale(1.1, 1.1);
+    color: white;
+    cursor: pointer;
+}
+
+.button-active {
+    background-color: rgba(255, 0, 179, 0.842);
+    color: white;
+}
+.button-active:hover {
+    background-color: rgba(170, 6, 121, 0.842);
+    color: white;
+}
+
+.navSection {
+    display: table-row;
+}
+
+// Options (top of sidenav)
+#Options {
+    display: table-cell;
+    vertical-align: top;
+    height: 50%;
+}
+
+// Functions (bottom of sidenav)
+#Functions {
+    display: table-cell;
+    vertical-align: bottom;
+    height: 50%;
+}
+
+// Functions when clicked
+#Functions a:active{
+    color: hotpink;
+}
+
+// Divs of settings when closed
+.ToolSettings, .ShapeSettings{
+    display: none;
+}
+
+// Divs of settings when opened
+.currentToolSettings, .currentShapeSettings {
+    display: inline;
+}
+
+p {
+    display: inline-block;
+}
+
+.ToolPanel h1, p {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+input {
+    width: 40px;
+    margin-left: 4px;
+    margin-right: 3px;
+}
+
+.color-text {
+    float: left;
+    text-align: center;
+    margin-left: 5px;
+}
+
+.ColorSelection {
+    display: block;
+}
+
+.ColorPreview{
+    width: 100%;
+    height: 50px;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.PrimaryColor{
+    float: right;
+    width: 50px;
+    height: 50px;
+    border: white;
+    border-width: thin;
+    border-style: solid;
+    margin-right: 5px;
+}
+
+.PrimaryColor:hover{
+    cursor: pointer;
+}
+
+.Optional, .NumberField {
+    width: 100%;
+    margin: 0 auto; // center
+    display: inline-block;
+    position: relative;
+}
+
+.thicknessSlider {
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+
+.angleSlider {
+    margin-left: 25px;
+}
+
+
+.Optional p {
+  font-size: 14px;
+}
+
+.NumberField p {
+    font-size: 12px;
+    margin-right: 20%;
+}
+
+#DrawingZone {
+    position: relative;
+}
+
+#Grid {
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.Disable {
+    pointer-events: none;
+    opacity: 30%;
+}
+
+.example-container {
+    width: 100%;
+    height: 100%;
+    background-color: #ccc;
+}
+  
+.example-sidenav-content {
+    position: fixed;
+    margin-right: 0.75%;
+    bottom:0;
+    right:0;
+    width: 3vw;
+    height: 5vh;
+    background: #7740C9;
+    border-radius: 50%;
+    font-size: 35px;
+    opacity: 1;
+
+    mat-icon {
+        vertical-align: middle;
+        margin-bottom: 15%;
+    }
+}
+.example-sidenav-content:hover {
+    opacity: 1;
+    background: #a170ec;
+    transition: 0.2s;
+}
+  
+.example-sidenav {
+    padding: 20px;
+    background: linear-gradient(45deg, rgb(9, 110, 194) 0%, rgba(10, 60, 224, 0.746) 30%, rgb(219, 14, 226) 100%);
+}
+
+h3 {
+    font-size: 15px;
+    overflow: hidden;
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  h3:before,
+  h3:after {
+    background-color: rgb(255, 255, 255);
+    content: "";
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 50%;
+  }
+  
+  h3:before {
+    right: 0.5em;
+    margin-left: -50%;
+  }
+  
+  h3:after {
+    left: 0.5em;
+    margin-right: -50%;
+  }
+
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgb(128, 128, 128); 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(161, 63, 173); 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(120, 0, 136, 0.877); 
+  }

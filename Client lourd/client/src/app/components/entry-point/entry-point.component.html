@@ -1,0 +1,15 @@
+<div id="main_div">
+    <div id="Bienvenue">
+        <h1>Bienvenue sur Colorimage</h1>
+    </div>
+    <div>
+        <div class="btn_container">
+            <button (click)="openNewDrawing()">Nouveau dessin</button>
+            <button [class.disabled]="continueDisabled" (click)="continueDrawing()">Continuer dessin</button>
+        </div>
+        <div class="btn_container">
+            <button (click)="openGallery()">Ouvrir galerie</button>
+            <button (click)="openGuide()">Guide d'utilisation</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div>
+    <h2 mat-dialog-title>Choix de couleur</h2>
+</div>
+<div>
+    <app-color-selector [color]="color" (color)="color = $event" (primContainerSelected)= "containerSelectEmitted($event)"></app-color-selector>
+</div>
+<div>
+    <app-color-picker (color)="emitted()" [primContainerSelected] = "primContainerSelected"></app-color-picker>
+</div>
+
+<div mat-dialog-actions class="dialog_container" >
+    <button mat-stroked-button [mat-dialog-close]="true" cdkFocusInitialstyle>Valider</button>
+</div>

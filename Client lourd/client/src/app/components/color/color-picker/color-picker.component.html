@@ -1,0 +1,9 @@
+<div id = "sliderContainer" class="left" >
+    <canvas #slider width="15" height="200" (mousedown)="colorPress($event)" (mousemove)="moveColor($event)"></canvas>
+    <canvas #marker width="15" height="200"></canvas>
+</div>
+
+<div id = "sliderContainer" class="right">
+    <canvas #transparency width="15" height="200" (mousedown)="transparencyPress($event)" (mousemove)="transparencyMove($event)"></canvas>
+    <canvas #transparencyMarker width="15" height="200"></canvas>
+</div>

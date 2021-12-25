@@ -1,0 +1,118 @@
+<popout-window #windowComponent >
+    <button *ngIf="!this.chatService.getChatType()" class="logout-btn" (click)="windowComponent.popOut(); this.chatService.windowChat();">
+        <em class="fa fa-window-restore"></em>
+    </button>
+    
+    <button *ngIf="this.chatService.getChatType()" class="login-btn" (click)="windowComponent.popIn(); this.chatService.anchorChat(); this.scrollToBottom();">
+        <em class="fa fa-window-maximize"></em>
+    </button>
+    
+    <div class="container" [ngStyle]="{'width': this.chatService.getChatWindowSize()}">
+        <div class="chatbox" [ngStyle]="{'background': this.themesService.getInverseTextColor()}">
+            <!-- Button that shows RoomList -->
+            <div class="room-button">
+                <button (click)="showHideRoomsList()">{{ buttonName }}</button>
+            </div>
+            
+            <!-- Div for RoomList -->
+            <div class="chatbox__room-list" *ngIf="show_rooms_list" [@inOutAnimation] [ngStyle]="{'border-color': this.themesService.getTextColor()}">
+                <h2 [ngStyle]="{'background': this.themesService.getMenuContainerContentColor(), 'color': this.themesService.getTextColor()}">Canaux <mat-icon (click)="openSearchRoomDialog()">search</mat-icon></h2>
+            
+                <div class="rooms-div">
+                    <!-- Div for the current rooms -->
+                    <h3 *ngIf="drawingRoomList.length != 0">Canal du dessin</h3>
+                    <div class="chatbox__rooms" *ngFor="let room of drawingRoomList" (click)="chooseDrawingRoom($event)" [ngStyle]="{'background': this.themesService.getContainerContentButtonsColor()}">
+                        <mat-icon matPreffix class="icons" *ngIf="this.roomOwner.get(room) !== this.userService.getCurrentUsername() && room !== 'General' && !room.startsWith('ROOM_TEAM') && !room.startsWith('ROOM_DRAWING')" (click)="leaveChatRoom($event)" matTooltip="Sortir de la salle" matTooltipPosition="right">
+                            close
+                        </mat-icon>
+                        <mat-icon matPreffix class="icons" *ngIf="this.roomOwner.get(room) === this.userService.getCurrentUsername() && room !== 'General' && !room.startsWith('ROOM_TEAM') && !room.startsWith('ROOM_DRAWING')" (click)="deleteChatRoom($event)" matTooltip="Fermer de la salle" matTooltipPosition="right">
+                            exit_to_app
+                        </mat-icon>
+                        <p [ngStyle]="{'color': this.themesService.getTextColor()}"> 
+                            {{ getRoomName(room) }}
+                        </p>
+                    </div>
+                    <h3>Canaux réguliers</h3>
+                    <div class="chatbox__rooms" *ngFor="let room of regularRoomList" (click)="chooseRoom($event)" [ngStyle]="{'background': this.themesService.getContainerContentButtonsColor()}">
+                        <mat-icon matPreffix class="icons" *ngIf="this.roomOwner.get(room) !== this.userService.getCurrentUsername() && room !== 'General' && !room.startsWith('ROOM_TEAM') && !room.startsWith('ROOM_DRAWING')" (click)="leaveChatRoom($event)" matTooltip="Sortir de la salle" matTooltipPosition="right">
+                            close
+                        </mat-icon>
+                        <mat-icon matPreffix class="icons" *ngIf="this.roomOwner.get(room) === this.userService.getCurrentUsername() && room !== 'General' && !room.startsWith('ROOM_TEAM') && !room.startsWith('ROOM_DRAWING')" (click)="deleteChatRoom($event)" matTooltip="Fermer de la salle" matTooltipPosition="right">
+                            exit_to_app
+                        </mat-icon>
+                        <p [ngStyle]="{'color': this.themesService.getTextColor()}"> 
+                            {{ getRoomName(room) }}
+                        </p>
+                    </div>
+                    <h3 *ngIf="teamRoomList.length != 0">Canaux d'équipes</h3>
+                    <div class="chatbox__rooms" *ngFor="let room of teamRoomList" (click)="chooseTeamRoom($event)" [ngStyle]="{'background': this.themesService.getContainerContentButtonsColor()}">
+                        <mat-icon matPreffix class="icons" *ngIf="this.roomOwner.get(room) !== this.userService.getCurrentUsername() && room !== 'General' && !room.startsWith('ROOM_TEAM') && !room.startsWith('ROOM_DRAWING')" (click)="leaveChatRoom($event)" matTooltip="Sortir de la salle" matTooltipPosition="right">
+                            close
+                        </mat-icon>
+                        <mat-icon matPreffix class="icons" *ngIf="this.roomOwner.get(room) === this.userService.getCurrentUsername() && room !== 'General' && !room.startsWith('ROOM_TEAM') && !room.startsWith('ROOM_DRAWING')" (click)="deleteChatRoom($event)" matTooltip="Fermer de la salle" matTooltipPosition="right">
+                            exit_to_app
+                        </mat-icon>
+                        <p [ngStyle]="{'color': this.themesService.getTextColor()}"> 
+                            {{ getRoomName(room) }}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="create-room">
+                    <button [ngStyle]="{'background': this.themesService.getMenuContainerContentColor(), 'color': this.themesService.getTextColor()}" (click)="openAddRoomDialog()">
+                            CRÉER NOUVEAU CANAL
+                            <mat-icon matSuffix>
+                                add
+                            </mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Div for User List -->
+            <div class="chatbox__user-list" *ngIf="!show_rooms_list" [ngStyle]="{'border-color': this.themesService.getTextColor()}">
+                <h2 [ngStyle]="{'background': this.themesService.getMenuContainerContentColor(), 'color': this.themesService.getTextColor()}">Utilisateurs</h2>
+                <div class="chatbox__users" *ngFor="let user of userList.get(this.currentRoom)">
+                    <p [ngStyle]="{'color': this.themesService.getTextColor()}">
+                        <span class ="dot" [ngClass]="{
+                        'dot-red' : user.active == false,
+                        'dot-green' : user.active == true}">
+                        </span>
+                        {{ user.name }}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Div for messages -->
+            <div id="messages_list" [ngStyle]="{'border-color': this.themesService.getTextColor()}">
+                <div class="chatbox-current-room" [ngStyle]="{'background': this.themesService.getMenuContainerContentColor(), 'color': this.themesService.getTextColor()}">
+                    {{ getRoomName(this.currentRoom) }}
+                </div>
+                <div id="chatbox__messages_container" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+                    <div class="chatbox__messages" #messageContainer *ngFor="let msg of messageList.get(this.currentRoom)" [ngClass]="{mine: msg.mine}">
+                        <div class="img-msgbox-container" [ngClass]="{mine: msg.mine}">
+                            <img class="image" *ngIf="!msg.mine" src="{{ msg.avatar }}">
+                            <div class="message-box" *ngIf="!msg.mine" [ngStyle]="{'background': this.themesService.getOtherMessageBox()}">
+                                <p class="name" [ngStyle]="{'color': this.themesService.getTextColor()}">{{ msg.userName }} [{{ msg.time }}]</p>
+                                <p class="message" [ngStyle]="{'color': this.themesService.getTextColor()}">{{ msg.message }}</p>
+                            </div>
+                            <div class="message-box" *ngIf="msg.mine" [ngStyle]="{'background': this.themesService.getMyMessageBox()}">
+                                <p class="name" [ngStyle]="{'color': this.themesService.getTextColor()}">{{ msg.userName }} [{{ msg.time }}]</p>
+                                <p class="message" [ngStyle]="{'color': this.themesService.getTextColor()}">{{ msg.message }}</p>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+
+                <div class="mat-form" [ngStyle]="{'background': this.themesService.getInverseTextColor()}">
+                    <mat-form-field appearance="outline" class="form">
+                        <input matInput type="text" placeholder="Entrez votre message" [(ngModel)]="message" (keyup)="handleKeypress($event)" autofocus>
+                    </mat-form-field>
+    
+                    <div class="btn" (click)="sendMessage()" [ngStyle]="{'background': this.themesService.getInverseTextColor()}">
+                        <mat-icon [ngStyle]="{'background': this.themesService.getInverseTextColor(),'color': this.themesService.getMessageButton()}">send</mat-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</popout-window>

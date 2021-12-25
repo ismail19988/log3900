@@ -1,0 +1,35 @@
+span {
+  font-size: 18px;
+}
+
+.moveRight1{
+  margin-left:15px ;
+}
+.moveRight2{
+  margin-left:22px;
+}
+
+
+.blue-grey {
+  color: #607d8b;
+}
+#color-prim{
+    margin-right: 35px;
+}
+#prim-canvas{
+    margin-left: 10px; 
+    margin-top:5px
+}
+#sec-canvas{
+    margin-top:5px;
+}
+ #colorContainers {
+   display: inline-flex;
+ }
+
+:host {
+  display: block;
+  float: left;
+  width: 225px; // takes parent width
+  height: 255px; // takes parent height
+}

@@ -1,0 +1,51 @@
+<h1 *ngIf="!this.displayErrorDialog && !data.isRegister" [ngStyle]="{'color': this.themesService.getTextColor()}">Exigences:</h1>
+<h1 *ngIf="!this.displayErrorDialog && data.isRegister" style="color: white">Exigences:</h1>
+<h1 class="errors" *ngIf="this.displayErrorDialog">Erreurs:</h1>
+
+<div mat-dialog-content *ngIf="!data.isRegister">
+    <ul *ngIf="data.usernameHelper" [ngStyle]="{'color': this.themesService.getTextColor()}">
+        <li>Pseudonyme d'un maximum de 20 caractères</li>
+        <li>Les caractères spéciaux ne sont pas acceptés</li>
+    </ul> 
+
+    <ul *ngIf="data.passwordHelper" [ngStyle]="{'color': this.themesService.getTextColor()}">
+        <li>Mot de passe doit contenir au moins un caractère minuscule</li>
+        <li>Mot de passe doit contenir au moins un caractère majuscule</li>
+        <li>Mot de passe doit contenir au moins un chiffre</li>
+        <li>Mot de passe doit avoir une longueur minimale de 8 caractères</li>
+        <li>Mot de passe doit avoir une longueur maximale de 32 caractères</li>
+    </ul>
+
+    <ul>
+        <li *ngFor="let error of data.errorList" [ngStyle]="{'color': this.themesService.getTextColor()}">{{error}}</li>
+    </ul>
+</div>
+
+<div mat-dialog-content *ngIf="data.isRegister">
+    <ul *ngIf="data.usernameHelper" >
+        <li>Pseudonyme d'un maximum de 20 caractères</li>
+        <li>Les caractères spéciaux ne sont pas acceptés</li>
+    </ul> 
+
+    <ul *ngIf="data.passwordHelper">
+        <li>Mot de passe doit contenir au moins un caractère minuscule</li>
+        <li>Mot de passe doit contenir au moins un caractère majuscule</li>
+        <li>Mot de passe doit contenir au moins un chiffre</li>
+        <li>Mot de passe doit avoir une longueur minimale de 8 caractères</li>
+        <li>Mot de passe doit avoir une longueur maximale de 32 caractères</li>
+    </ul>
+
+    <ul>
+        <li *ngFor="let error of data.errorList">{{error}}</li>
+    </ul>
+</div>
+
+<div mat-dialog-actions *ngIf="!data.isRegister">
+    <button class="dialog-button" *ngIf="!this.displayErrorDialog" mat-stroked-button (click)="closeWindow()" [ngStyle]="{'color': this.themesService.getTextColor()}">Compris!</button>
+    <button class="dialog-button-error" *ngIf="this.displayErrorDialog" mat-stroked-button (click)="closeWindow()" [ngStyle]="{'color': this.themesService.getTextColor()}">Ok!</button>
+</div>
+
+<div mat-dialog-actions *ngIf="data.isRegister">
+    <button class="dialog-button" *ngIf="!this.displayErrorDialog" mat-stroked-button (click)="closeWindow()">Compris!</button>
+    <button class="dialog-button-error" *ngIf="this.displayErrorDialog" mat-stroked-button (click)="closeWindow()">Ok!</button>
+</div>

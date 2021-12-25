@@ -1,0 +1,54 @@
+<div class="history-profile-container-header" *ngIf="!goBack" [ngStyle]="{'color': this.themesService.getTextColor(), 'border-bottom' : '5px solid' + this.themesService.getShadowBox()}">
+    <span> Historique du compte </span>
+    <button  class="return-btn" matTooltip="Retourner au menu utilisateur" matTooltipPosition="left" 
+             (click)="returnToProfileMenu()">
+        <em class="fa fa-arrow-left"></em>
+    </button>
+</div>
+
+<div class="history-profile-container-content" *ngIf="!goBack" [ngStyle]="{'color': this.themesService.getTextColor()}">
+    <div class="history-segments" *ngFor="let history of this.myHistories" [ngStyle]="{'background': this.themesService.getContainerContentButtonsColor()}">
+
+        <div *ngIf="history.type=='login'">
+            <em class="fas fa-sign-in-alt left"></em>
+            <span> Connexion </span>
+            <div class="history-date">
+                <span>
+                    {{history.date.day}}/{{history.date.month}}/{{history.date.year}}
+                </span>
+                <span>
+                    {{history.time}}
+                </span>
+            </div>
+        </div>
+
+        <div *ngIf="history.type=='logout'">
+            <em class="fas fa-sign-out-alt left"></em>
+            <span> Déconnexion </span>
+            <div class="history-date">
+                <span>
+                    {{history.date.day}}/{{history.date.month}}/{{history.date.year}}
+                </span>
+                <span>
+                    {{history.time}}
+                </span>
+            </div>
+        </div>
+
+        <div *ngIf="history.type=='join_drawing'">
+            <em class="fas fa-pen left"></em>
+            <span> Éditer le dessin:  <u>{{history.drawing}}</u></span>
+            <em class="fas fa-arrow-right right" (click)="getDrawingInfo(history.drawing)"></em>
+            <div class="history-date-edition">
+                <span>
+                    {{history.date.day}}/{{history.date.month}}/{{history.date.year}}
+                </span>
+                <span>
+                    {{history.time}}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-user-profile-settings *ngIf="goBack"></app-user-profile-settings>

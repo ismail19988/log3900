@@ -1,0 +1,85 @@
+.avatar {
+    width: 100%;
+    display: flex;
+    .avatar-container {
+        //width: 70%;
+        flex: 70%;
+        text-align: center;
+        background: linear-gradient(to right, rgba(0, 63, 238, 0.514), purple);
+        display: inline-block;
+        border-radius: 10%;
+        .avatars {
+            width: 5vw;
+            height: 5vw;
+            display: inline-block;
+            cursor: pointer;
+            border-radius: 35% 10%;
+            //content: url("~src/assets/Color_image.jpg");
+            margin: 2% 2% 2% 2%;   
+            padding: 0.75%;   
+            //background: linear-gradient(to bottom left, #f83600, #f9d423);
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 30%, rgba(36,163,189,1) 100%);
+        }
+        .avatars:hover {
+            background: linear-gradient(to bottom left, #f83600, #f9d423);
+        }
+    }
+    .avatar-chosen {
+        //width: 30%;
+        flex: 30%;
+        background: linear-gradient(to right, rgba(87, 5, 180, 0.829), purple);
+        border-radius: 15%;
+
+        #image-chosen {
+            width: 11.5vw;
+            height: 11.5vw;
+            border-radius: 50%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 2%;
+            background: linear-gradient(to bottom left, #f83600ca, #f9d423);
+            padding: 2%;
+            //content: url("~src/assets/Color_image.jpg");
+        }
+
+        .select-image {
+            margin-top: 4%;
+            text-align:center;
+
+            .custom-file-upload {
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+                border: 3px solid rgb(189, 188, 188);
+                background-color: white;
+                color: black;
+                padding: 6px 12px;
+                cursor: pointer;
+                border-radius: 10%;
+
+                input[type="file"] {
+                    display: none;
+                }
+            }
+            .custom-file-upload:hover {
+                background-color: rgb(204, 204, 204);
+                transition: 0.3s;
+            }
+        }
+    }
+}
+.dialog-button {
+    font-family: sans-serif; 
+    font-weight: bold;
+}
+
+.dialog-button:hover {
+    transform: scale(1.1,1.1);
+    background-color:rgb(218, 72, 128);
+    transition: 0.4s;
+}
+
+.mat-dialog-actions {
+    justify-content: center;
+}

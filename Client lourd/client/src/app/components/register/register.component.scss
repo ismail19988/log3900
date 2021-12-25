@@ -1,0 +1,130 @@
+.background {
+  min-height: 100%;
+  background-size: cover;
+  background-image: url("~src/assets/BackgroundImageColorImage.jpg");
+  justify-content: center;
+}
+
+
+#main_card {
+  border-radius: 30px;
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  background-color : #0266DDFA;
+  width : 40%;
+  height : 65%;
+  display: block;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#profile-image {
+  width: 20%;
+  height: 20%;
+  margin-bottom: 2%;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 1%;
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 30%, rgba(36,163,189,1) 100%);
+}
+
+.form-style {
+  width: 100%;
+  margin-bottom: 2%;
+}
+
+#register {
+  width: 100%;
+  margin-bottom: 2%;
+}
+
+.input {
+  width: 40%;
+  margin-right: 5%;
+  margin-left: 5%;
+  margin-bottom: 3%;
+  display: inline-block;
+}
+
+.inputPassword {
+  width: 40%;
+  display: inline-block;
+}
+
+
+.register-div {
+  width: 100%;
+  margin-bottom: 2%;
+}
+
+.register-button {
+  border-radius: 80px;
+  opacity: 0.78;
+  transition: 0.3s;
+  font-size: 20px;
+  text-align: center;
+  padding: 15px 80px;
+  background-color: #4CAF50;
+}
+
+.register-button:hover {
+  opacity: 1;
+}
+
+#icon_inputs {
+  margin-right: 10px;
+}
+
+.helper_icon {
+  width: 10%;
+  height: 2%;
+}
+
+.return-login-btn {
+  background-color: #522eca;
+  border: none;
+  text-align: center;
+  color: white;
+  padding: 16px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 60px;
+  box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+  opacity: 0.8;
+  transition: 0.5s;
+  margin-left: 12px;
+  position:absolute;
+  top:0;
+  left:0;
+}
+
+.return-login-btn:hover {
+  background-color: #ad98f0;
+  opacity: 1;
+}
+  
+::ng-deep .mat-focused .mat-form-field-label{
+  color:rgb(0, 255, 0) !important;
+}
+
+::ng-deep .mat-focused .mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: rgb(0, 255, 0) !important;;
+}
+
+mat-form-field.mat-form-field {
+  font-size: 16px;
+}
+
+
+  /*
+  *   Source of the animated buttons code:
+  *   https://www.fabriziovanmarciano.com/button-styles/?cn-reloaded=1
+  */
+  

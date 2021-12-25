@@ -1,0 +1,117 @@
+.search-container {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.amount-title {
+    width: 100%;
+    margin-bottom: 0;
+    margin-top: 3%;
+    color: black;
+    font-size: 18px;
+}
+
+.amount-container {
+    width: 13%;
+    margin-bottom: 0;
+}
+
+#example-full-width {
+    width: 100%;
+}
+
+#example-password {
+    width: 90%;
+}
+
+.question-icon {
+    color: black;
+    margin-left: 3%;
+}
+
+.question-icon:hover {
+    cursor: pointer;
+}
+
+.room-filter {
+    color: #000000;
+}
+
+.cancel-button{
+    margin:0;
+    display:inline;
+    float:left;
+    color: #6200ee;
+    font: 15px Arial, sans-serif;
+    font-weight: bold;
+}
+
+.cancel-button:hover{
+    color: #ec613e;
+    cursor:pointer;
+}
+
+.create-button{
+    margin:0;
+    display:inline;
+    float:right;
+    color: #3700b3;
+    font: 15px Arial, sans-serif;
+    font-weight: bold;
+}
+
+.create-button:hover{
+    color: #3ef108;
+    cursor:pointer;
+}
+
+.buttons{
+    width: 100%;
+    height: 20px;
+}
+
+.pass-icon {
+    color: black;
+}
+
+#textarea {
+    resize: none;
+}
+
+::ng-deep .mat-form-field-label{
+    color: #000000 !important;
+}
+
+::ng-deep .mat-form-field-underline {
+    background-color:  #000000 !important;;
+}
+
+::ng-deep .mat-select-arrow {
+    color:  #000000 !important;;
+}
+
+::ng-deep .mat-focused .mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color: #000000 !important;;
+}
+
+::ng-deep .mat-form-field-outline-start {
+    border-radius: 0 !important;
+}
+
+::ng-deep .mat-form-field-outline-end {
+    border-radius: 0 !important;
+}
+
+::ng-deep .mat-select-panel {
+    background-color: rgb(59, 54, 54);
+}
+
+::ng-deep .mat-select-value {
+    color: rgb(0, 0, 0);
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: rgb(100, 92, 94);
+    opacity: 0.5;
+}

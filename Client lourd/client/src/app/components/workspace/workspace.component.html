@@ -1,0 +1,277 @@
+<mat-drawer-container class="example-container" autosize>
+
+    <mat-drawer #drawer position="end" class="example-sidenav" mode="over" [ngStyle]="{'background': this.themesService.getInverseTextColor()}">
+        <app-chat> </app-chat>
+    </mat-drawer>
+
+    <table class="sidenav" [ngStyle]="{'background': this.themesService.getMenuContainerContentColor()}">
+        <tr class="navSection">
+            <td id="Options">
+                
+                <div #Option class="currentOption defaultOption">
+                </div>
+                
+                <div #Option>
+                    <a
+                        [ngStyle]="{'color': this.themesService.getTextColor()}"
+                        (click)="changeTool(this.selection); toggleOptions(1)"
+                        class="fas fa-mouse-pointer"
+                        matTooltip="Sélectionner"
+                        matTooltipPosition="right"
+                    >
+                    </a>
+                    <div class="ToolPanel" [ngStyle]="{'background': this.themesService.getContainerFooterButtonsColor(), 'color': this.themesService.getTextColor()}">
+                        <div class="content">
+                            <h1>Outil de sélection</h1>
+                            <hr>
+                            <div class="NumberField">
+                                <p>Épaisseur <br> du trait</p>
+                                <mat-slider color="primary" 
+                                class="thicknessSlider"
+                                [max]= MAX_THICKNESS
+                                [min]= MIN_THICKNESS
+                                [step]= 1
+                                [thumbLabel]= true
+                                [tickInterval]= DEFAULT_THICKNESS
+                                [(ngModel)]="this.currentThickness"
+                                (input)="updateThicknessSelection($event)"
+                                (mousedown) = "startThickness()">
+                                </mat-slider>
+                            </div>
+                            <div class="NumberField">
+                                <p>Angle</p>
+                                <mat-slider color="primary" 
+                                class="angleSlider"
+                                [max]= MAX_ROTATION
+                                [min]= MIN_ROTATION
+                                [step]= 1
+                                [thumbLabel]= true
+                                [tickInterval]= ROTATION_INTERVAL
+                                [(ngModel)]="this.currentRotation"
+                                (input)="updateRotation($event)"
+                                (mousedown) = "startRotation()"
+                                >
+                                </mat-slider>
+                            </div>
+                            <div class="ColorSelection">
+                                <div class="ColorPreview">
+                                    <p class="color-text">Couleur</p>
+                                    <div class="PrimaryColor"  [ngStyle]="{'border-color': this.themesService.getTextColor()}" [style.background-color] = "color.getHexPrimaryColor()" (mouseup) = "color.setColorToPick('primary'); openColor(true);"></div>
+                                </div>
+                                <div class="ColorPreview">
+                                    <p class="color-text" *ngIf="checkIfShape()">Couleur de contour</p>
+                                    <div class="PrimaryColor" *ngIf="checkIfShape()" [ngStyle]="{'border-color': this.themesService.getTextColor()}" [style.background-color] = "color.getHexSecondaryColor()" (mouseup) = "color.setColorToPick('secondary'); openColor(true);"></div>
+                                </div>
+                                <div class="ColorPreview">
+                                    <p class="color-text" *ngIf="checkIfShape()">Couleur de texte</p>
+                                    <div class="PrimaryColor" *ngIf="checkIfShape()" [ngStyle]="{'border-color': this.themesService.getTextColor()}" [style.background-color] = "color.getHexTertiaryColor()" (mouseup) = "color.setColorToPick('tertiary'); openColor(true);"></div>
+                                </div>
+                            </div>
+                            <div class="selection-buttons">
+                                <div
+                                    [ngStyle]="{'background': this.themesService.getMenuContainerContentColor()}"
+                                    class="selection-button"
+                                    matTooltip="Avancer"
+                                    matTooltipPosition="right"
+                                    (click) = "moveFront()"
+                                > <span>AVANCER</span> <mat-icon class="icon">flip_to_front</mat-icon></div>
+                                <div
+                                    [ngStyle]="{'background': this.themesService.getMenuContainerContentColor()}"
+                                    class="selection-button"
+                                    matTooltip="Reculer"
+                                    matTooltipPosition="right"
+                                    (click) = "moveBack()"
+                                > <span>RECULER</span> <mat-icon class="icon">flip_to_back</mat-icon></div>
+                                <div
+                                [ngStyle]="{'background': this.themesService.getMenuContainerContentColor()}"
+                                class="selection-button"
+                                matTooltip="Mettre à l'avant"
+                                matTooltipPosition="right"
+                                (click) = "bringToFront()"
+                                > ENVOYER À L'AVANT <mat-icon>flip_to_front</mat-icon></div>
+                                <div
+                                [ngStyle]="{'background': this.themesService.getMenuContainerContentColor()}"
+                                class="selection-button"
+                                matTooltip="Mettre à l'arrière"
+                                matTooltipPosition="right"
+                                (click) = "sendToBack()"
+                                > ENVOYER À L'ARRIÈRE <mat-icon>flip_to_back</mat-icon></div>
+                                <div
+                                class="selection-erase"
+                                    matTooltip="Supprimer"
+                                    matTooltipPosition="right"
+                                    (click) = "deleteSelection();"
+                                > SUPPRIMER <mat-icon>delete</mat-icon></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div #Option>
+                    <a [ngStyle]="{'color': this.themesService.getTextColor()}" (click)="changeTool(tools[0]); this.toolIsPencil = true;" class="fas fa-pencil-alt" matTooltip="Crayon" matTooltipPosition="right"></a>
+                    <div class="ToolPanel" [ngStyle]="{'background': this.themesService.getContainerFooterButtonsColor(), 'color': this.themesService.getTextColor()}">
+                        <div class="content">
+                            <h1>Outil de traçage</h1>
+                            <hr>
+                            <div class="ColorSelection">
+                                <div class="ColorPreview">
+                                    <p class="color-text">Couleur</p>
+                                    <div class="PrimaryColor"  [ngStyle]="{'border-color': this.themesService.getTextColor()}" [style.background-color] = "color.getHexPrimaryColor()" (mouseup) = "color.setColorToPick('primary'); openColor(false);"></div>
+                                </div>
+                            </div>
+                            <div *ngIf="selectedTool.getHasThickness()" class="NumberField">
+                                <p>Épaisseur <br> du trait</p>
+                                <mat-slider
+                                #ThicknessSlider 
+                                color="primary" 
+                                class="thicknessSlider"
+                                [max]= MAX_THICKNESS
+                                [min]= MIN_THICKNESS
+                                [step]= 1
+                                [thumbLabel]= true
+                                [tickInterval]= DEFAULT_THICKNESS
+                                (input)="updateThickness($event)">
+                                </mat-slider>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div #Option>
+                    <a [ngStyle]="{'color': this.themesService.getTextColor()}" (click)="changeTool(shapes[0]); this.toolIsPencil = false;" class="far fa-square" matTooltip="Rectangle" matTooltipPosition="right"></a>
+                    <div class="ToolPanel" [ngStyle]="{'background': this.themesService.getContainerFooterButtonsColor(), 'color': this.themesService.getTextColor()}">
+                        <div class="content">
+                            <h1>Outil de rectangle</h1>
+                            <hr>
+                            <div class="ColorSelection">
+                                <div class="ColorPreview">
+                                    <p class="color-text">Couleur</p>
+                                    <div class="PrimaryColor"  [ngStyle]="{'border-color': this.themesService.getTextColor()}" [style.background-color] = "color.getHexPrimaryColor()" (mouseup) = "color.setColorToPick('primary'); openColor(false);"></div>
+                                </div>
+                                <div class="ColorPreview">
+                                    <p class="color-text" *ngIf="!this.toolIsPencil">Couleur de contour</p>
+                                    <div class="PrimaryColor" *ngIf="!this.toolIsPencil" [ngStyle]="{'border-color': this.themesService.getTextColor()}" [style.background-color] = "color.getHexSecondaryColor()" (mouseup) = "color.setColorToPick('secondary'); openColor(true);"></div>
+                                </div>
+                            </div>
+                            <div *ngIf="selectedTool.getHasThickness()" class="NumberField">
+                                <p>Épaisseur <br> du trait</p>
+                                <mat-slider
+                                #ThicknessSlider 
+                                color="primary" 
+                                class="thicknessSlider"
+                                [max]= MAX_THICKNESS
+                                [min]= MIN_THICKNESS
+                                [step]= 1
+                                [thumbLabel]= true
+                                [tickInterval]= DEFAULT_THICKNESS
+                                (input)="updateThickness($event)">
+                                </mat-slider>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div #Option>
+                    <a [ngStyle]="{'color': this.themesService.getTextColor()}" (click)="changeTool(shapes[1]); this.toolIsPencil = false;" class="far fa-circle" matTooltip="Ellipse" matTooltipPosition="right"></a>
+                    <div class="ToolPanel" [ngStyle]="{'background': this.themesService.getContainerFooterButtonsColor(), 'color': this.themesService.getTextColor()}">
+                        <div class="content">
+                            <h1>Outil d'ellipse</h1>
+                            <hr>
+                            <div class="ColorSelection">
+                                <div class="ColorPreview">
+                                    <p class="color-text">Couleur</p>
+                                    <div class="PrimaryColor"  [ngStyle]="{'border-color': this.themesService.getTextColor()}" [style.background-color] = "color.getHexPrimaryColor()" (mouseup) = "color.setColorToPick('primary'); openColor(false);"></div>
+                                </div>
+                                <div class="ColorPreview">
+                                    <p class="color-text" *ngIf="!this.toolIsPencil">Couleur de contour</p>
+                                    <div class="PrimaryColor" *ngIf="!this.toolIsPencil" [ngStyle]="{'border-color': this.themesService.getTextColor()}" [style.background-color] = "color.getHexSecondaryColor()" (mouseup) = "color.setColorToPick('secondary'); openColor(true);"></div>
+                                </div>
+                            </div>
+                            <div *ngIf="selectedTool.getHasThickness()" class="NumberField">
+                                <p>Épaisseur <br> du trait</p>
+                                <mat-slider
+                                #ThicknessSlider 
+                                color="primary" 
+                                class="thicknessSlider"
+                                [max]= MAX_THICKNESS
+                                [min]= MIN_THICKNESS
+                                [step]= 1
+                                [thumbLabel]= true
+                                [tickInterval]= DEFAULT_THICKNESS
+                                (input)="updateThickness($event)">
+                                </mat-slider>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div #Option>
+                    <a [ngStyle]="{'color': this.themesService.getTextColor()}" (click)="toggleOptions(HISTORY_INDEX)" class="fas fa-history" matTooltip="Historique du dessin" matTooltipPosition="right"></a>
+                    <div class="ToolPanel" [ngStyle]="{'background': this.themesService.getContainerFooterButtonsColor(), 'color': this.themesService.getTextColor()}">
+                        <div class="content">
+                            <h1>Historique du dessin</h1>
+                            <hr>
+                            
+                            <button class="drawing-version-button" (click)="newVersion()">
+                                <span >Nouvelle version +</span>
+                            </button>
+
+                            <h3>Historique des versions</h3>
+
+                            <div class="drawing-version-container" [ngStyle]="{'border-color': this.themesService.getTextColor()}">
+                                <div *ngFor="let button of [].constructor(drawingSvgService.drawing_versions); let i = index">
+                                    <button [id]='i' *ngIf="checkVersion(i)" class="drawing-version-child button-active" (click)="swapVersion(i)">
+                                        <span >Version {{i + 1}}</span>
+                                    </button>
+                                    <button [id]='i' *ngIf="!checkVersion(i)" class="drawing-version-child" (click)="swapVersion(i)" [ngStyle]="{'background': this.themesService.getMenuContainerContentColor(), 'color': this.themesService.getTextColor()}">
+                                        <span >Version {{i + 1}}</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>     
+                </div>
+            </td>
+        </tr>
+        <tr class="navSection">
+            <td id="Functions">
+                
+                <mat-icon
+                    [ngStyle]="{'color': this.themesService.getTextColor()}"
+                    class="undo-redo"
+                    matTooltip="Annuler"
+                    matTooltipPosition="right"
+                    (click)="undo()"
+                >undo</mat-icon>
+                <mat-icon
+                    [ngStyle]="{'color': this.themesService.getTextColor()}"
+                    class="undo-redo"
+                    matTooltip="Refaire"
+                    matTooltipPosition="right"
+                    (click)="redo()"
+                >redo</mat-icon>
+                <a [ngStyle]="{'color': this.themesService.getTextColor()}" (click)="openThemes()" class="fa fa-tint" matTooltip="Thèmes" matTooltipPosition="right"> </a>
+                <a [ngStyle]="{'color': this.themesService.getTextColor()}" (click)="goToGallery(); this.chatService.anchorChat();" class="fa fa-image" matTooltip="Galerie de déssin" matTooltipPosition="right"> </a>
+                <a [ngStyle]="{'color': this.themesService.getTextColor()}" (click)="logout()" class="fa fa-sign-out" matTooltip="Déconnexion" matTooltipPosition="right"> </a>
+            </td>
+        </tr>
+    </table>
+
+    <div #WorkingSpace class="WorkingSpace">
+        <div id="DrawingZone">
+            <app-drawing-picture
+                [showGrid]="showGridOption"
+                [squareSize]="currentSquareSize"
+                [gridOpacity]="currentGridOpacity"
+                [currentTool]="activeTool"
+                (currentTool)="activeTool = $event"
+            >
+            </app-drawing-picture>
+        </div>
+
+        <button *ngIf="!this.chatService.getChatType()" class="example-sidenav-content" mat-button type="button" (click)="drawer.toggle()">
+            <mat-icon>chat</mat-icon>
+        </button>
+    </div>
+</mat-drawer-container>

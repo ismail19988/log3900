@@ -1,0 +1,45 @@
+<div class="background">
+    <mat-card id="main_card">
+        <div id="welcome">
+            <h1>Bienvenue sur ColorImage!</h1>
+        </div>
+
+        <div id="login">
+            <h1>Connexion</h1>
+        </div>
+
+        <div class="form-style" color="blue">
+            <p class="wrong-credentials" *ngIf="this.userConnected">Utilisateur déjà connecté!</p>
+            <mat-form-field color="warn" appearance="fill"  id="input">
+                <mat-label>Courriel</mat-label>
+                <input [(ngModel)]="this.emailInput" [ngModelOptions]="{standalone: true}" type="email" required matInput (keyup)="updateLoginMessages($event)"/>
+                <span matPrefix>
+                    <mat-icon matPreffix id="icon">account_circle</mat-icon>
+                </span>
+            </mat-form-field>
+            <p class="wrong-credentials" *ngIf="this.emailInvalid">Entrer un courriel valide!</p>
+
+            <mat-form-field appearance="fill" floatLabel="always" id="input">
+                <mat-label>Mot de passe</mat-label>
+                <input [(ngModel)]="this.passwordInput" minlength="8" maxlength="32" [ngModelOptions]="{standalone: true}" required matInput [type]="hide ? 'password' : 'text'" (keyup)="updateLoginMessages($event)"/>
+                <span matPrefix>
+                    <mat-icon matPreffix id="icon">lock</mat-icon>
+                </span>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+            <p class="wrong-credentials" *ngIf="this.passwordInvalid">Entrer un mot de passe valide!</p>
+        </div>
+
+        <div class="sign-in-div">
+            <button class="sign-in-button" (click)="authentificationRequest()" mat-raised-button color="primary">SE CONNECTER</button>
+        </div>
+
+        <div class="account">
+            <a (click)="goToRegisterPage()">Ou créer un compte ici!</a>
+        </div>
+    </mat-card>
+</div>
+
+

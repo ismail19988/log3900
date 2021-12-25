@@ -1,0 +1,64 @@
+<div class="statistics-profile-container-header" *ngIf="!goBack" [ngStyle]="{'color': this.themesService.getTextColor(), 'border-bottom' : '5px solid' + this.themesService.getShadowBox()}">
+    <span> Statistiques du compte </span>
+    <button  class="return-btn" matTooltip="Retourner au menu utilisateur" matTooltipPosition="left" (click)="returnToProfileMenu()">
+        <em class="fa fa-arrow-left"></em>
+    </button>
+</div>
+
+<div class="statistics-profile-container-content" *ngIf="!goBack" [ngStyle]="{'background': this.themesService.getContainerContentButtonsColor()}">
+    <div class="statistics-information-divider-content" [ngStyle]="{'color': this.themesService.getTextColor()}">
+        <div class="statistics-information-left">
+            Nombre de dessins collaborés :
+        </div>
+        <div class="statistics-information-right" *ngIf="this.drawingsCollaborated <= 1">
+            {{drawingsCollaborated}} dessin
+        </div>
+        <div class="statistics-information-right" *ngIf="this.drawingsCollaborated > 1">
+            {{drawingsCollaborated}} dessins
+        </div>
+    </div>
+
+    <div class="statistics-information-divider-content" [ngStyle]="{'color': this.themesService.getTextColor()}">
+        <div class="statistics-information-left">
+            Nombre de dessins créés :
+        </div>
+        <div class="statistics-information-right" *ngIf="this.drawingsCreated <= 1">
+            {{drawingsCreated}} dessin
+        </div>
+        <div class="statistics-information-right" *ngIf="this.drawingsCreated > 1">
+            {{drawingsCreated}} dessins
+        </div>
+    </div>
+
+    <div class="statistics-information-divider-content" [ngStyle]="{'color': this.themesService.getTextColor()}">
+        <div class="statistics-information-left">
+            Nombre d'équipes :
+        </div>
+        <div class="statistics-information-right" *ngIf="this.amountTeams <= 1">
+            {{amountTeams}} équipe
+        </div>
+        <div class="statistics-information-right" *ngIf="this.amountTeams > 1">
+            {{amountTeams}} équipes
+        </div>
+    </div>
+
+    <div class="statistics-information-divider-content" [ngStyle]="{'color': this.themesService.getTextColor()}">
+        <div class="statistics-information-left">
+            Temps moyen de collaboration :
+        </div>
+        <div class="statistics-information-right">
+            {{averageCollaboration}}
+        </div>
+    </div>
+
+    <div class="statistics-information-divider-content" [ngStyle]="{'color': this.themesService.getTextColor()}">
+        <div class="statistics-information-left">
+            Temps total passé à collaborer :
+        </div>
+        <div class="statistics-information-right">
+            {{totalCollaboration}}
+        </div>
+    </div>
+</div>
+
+<app-user-profile-settings *ngIf="goBack"></app-user-profile-settings>

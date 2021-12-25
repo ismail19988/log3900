@@ -1,0 +1,96 @@
+<div class="profile-container-header" *ngIf="!goBack" [ngStyle]="{'color': this.themesService.getTextColor(), 'border-bottom' : '5px solid' + this.themesService.getShadowBox()}">
+    <span> Paramètres de compte </span>
+    <button  class="return-btn" matTooltip="Retourner au menu utilisateur" matTooltipPosition="left" (click)="returnToProfileMenu()">
+        <em class="fa fa-arrow-left"></em>
+    </button>
+</div>
+
+<div class="profile-container-content" *ngIf="!goBack" [ngStyle]="{'color': this.themesService.getTextColor()}">
+    <div class="account-information-container" [ngStyle]="{'background': this.themesService.getContainerContentButtonsColor()}">
+        <div class="account-information-content">
+            <h1 style="text-align: center; text-decoration: underline;">Informations de compte</h1>
+            <img id="profile-image" (click)="openAvatarDialog()" src="{{ this.avatarService.getPreviewAvatar() }}"/>
+
+            <div class="account-information-divider-container">
+                <div class="account-information-divider-content">
+                    <div class="account-information-left">
+                        Courriel
+                    </div>
+                    <div class="account-information-right">
+                        <span> {{inputEmail}} </span>
+                    </div>
+                </div>
+
+                <div class="account-information-divider-content">
+                    <div class="account-information-left">
+                        Prénom
+                    </div>
+                    <div class="account-information-right">
+                        <span> {{inputPrenom}} </span>
+                    </div>
+                </div>
+
+                <div class="account-information-divider-content">
+                    <div class="account-information-left">
+                        Nom
+                    </div>
+                    <div class="account-information-right">
+                        <span> {{inputName}} </span>
+                    </div>
+                </div>
+
+                <div class="account-information-divider-content">
+                    <div class="account-information-left">
+                        Pseudonyme
+                    </div>
+                    <div class="account-information-right-modify">
+                        <div> 
+                            <span>{{inputNickname}} </span>
+                            <em class="fas fa-edit" (click)="openChangeUsernameDialog()" matTooltip="Modifier le pseudonyme" matTooltipPosition="right"></em>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="account-information-divider-content">
+                    <div class="account-information-left">
+                        Mot de passe
+                    </div>
+                    <div class="account-information-right-modify">
+                        <div> 
+                            <span>{{hashPassword(inputPassword)}} </span>
+                            <em class="fas fa-edit" (click)="openChangePasswordDialog()" matTooltip="Modifier le mot de passe" matTooltipPosition="right"></em>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="privacy-settings-container" [ngStyle]="{'background': this.themesService.getContainerContentButtonsColor()}">
+        <div class="privacy-settings-content">
+            <h1 style="margin-bottom: none; text-align: center; text-decoration: underline;">Paramètres de confidentialités</h1>
+
+            <div class="privacy-settings-divider-container">
+                <div class="privacy-settings-divider-content">
+                    <div class="privacy-settings-left">
+                        Afficher le courriel au public
+                    </div>
+                    <div class="privacy-settings-right">
+                        <mat-slide-toggle class="mat-slide-toggle" size="large" [(ngModel)]="emailIsChecked" (ngModelChange)="setEmailPublic()"></mat-slide-toggle>
+                    </div>
+                </div>
+
+                <div class="privacy-settings-divider-content">
+                    <div class="privacy-settings-left">
+                        Afficher le nom au public
+                    </div>
+                    <div class="privacy-settings-right">
+                        <mat-slide-toggle [(ngModel)]="nameIsChecked" (ngModelChange)="setNamePublic()"> </mat-slide-toggle>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-user-profile-settings *ngIf="goBack"></app-user-profile-settings>

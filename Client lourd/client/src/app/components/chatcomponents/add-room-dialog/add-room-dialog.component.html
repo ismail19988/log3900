@@ -1,0 +1,10 @@
+<h1 style="text-align: left; font: sans-serif; color: rgb(0, 0, 0);">Entrez le nom du canal:</h1>
+
+<div class="search-container">
+    <mat-form-field class="example-full-width">
+        <input class="room-filter" maxlength="20" [(ngModel)]="this.newRoom" type="tel" matInput placeholder="Entrez ici" (keyup)="checkNameValidity($event)">
+    </mat-form-field>
+</div>
+
+<p class="cancel-button" (click) ="cancelCreation()">ANNULER</p>
+<p class="create-button" *ngIf="this.validName" (click) ="confirmCreation()">CRÉER</p>

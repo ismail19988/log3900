@@ -1,0 +1,17 @@
+button{
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.dialog_container{
+  display: flex;
+  position: relative;
+  right: 92%;
+  top: 75%;
+}
+
+:host{
+  display: block;
+  width: 350px;    // takes parent width        
+  height: 400px;   // takes parent height    
+}

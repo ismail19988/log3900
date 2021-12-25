@@ -1,0 +1,51 @@
+<div class="search-container">
+    <mat-form-field appearance="standard" id="example-full-width">
+        <mat-label>Nom de l'équipe de collaboration:</mat-label>
+        <input class="room-filter" maxlength="20" [(ngModel)]="this.newTeam" matInput required>
+    </mat-form-field>
+</div>
+<div class="search-container">
+    <mat-form-field appearance="standard" id="example-full-width">
+        <mat-label>Propriétaire:</mat-label>
+        <input class="room-filter" value="{{this.userService.getCurrentUsername()}}" matInput readonly>
+    </mat-form-field>
+</div>
+
+<div class="search-container">
+    <textarea id="textarea" rows="5" cols="63" maxlength="200" [(ngModel)]="this.teamBio" placeholder="Description de l'équipe collaborative (max: 200 caractères)">
+    </textarea>
+</div>
+
+<div class="amount-title">Nombre d'utilisateurs:</div>
+
+<div class="amount-container">
+    <mat-form-field appearance="standard" id="example-full-width">
+        <input class="room-filter" [(ngModel)]="this.amountUsers" matInput type="number" min="1" max="10" (keyup)='checkAmountValidity()' required>
+    </mat-form-field>
+</div>
+
+<div class="search-container">
+    <mat-form-field appearance="standard" id="example-full-width">
+    <mat-select [(value)]="this.selected">
+        <mat-option value="public">Public</mat-option>
+        <mat-option value="protected">Protégé</mat-option>
+    </mat-select>
+    </mat-form-field>
+</div>
+
+<div class="search-container" *ngIf="this.selected == 'protected'">
+    <p style="text-align: left; font: sans-serif; color: red;" *ngIf="!this.passwordValid">Entrez un mot de passe valide!</p>
+    <mat-form-field appearance="standard" id="example-password">
+        <mat-label>Mot de passe</mat-label>
+        <input class="room-filter" [(ngModel)]="this.password" matInput required [type]="hide ? 'password' : 'text'" (keypress)="handlePasswordValidity($event)">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon class="pass-icon">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+    </mat-form-field>
+    <mat-icon class="question-icon" (click)="openPasswordhelperDialog()">help_outline</mat-icon>
+</div>
+
+<div class="buttons" [ngStyle]="{'margin-top': ButtonsPlacement()}">
+<p class="cancel-button" (click) ="cancelCreation()">ANNULER</p>
+<p class="create-button" *ngIf="checkNameValidity()" (click) ="confirmCreation()">CRÉER</p>
+</div>

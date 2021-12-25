@@ -1,0 +1,22 @@
+*{
+    font-family: "Arial";
+}
+
+h1{
+    margin-bottom: 0;
+    text-decoration: underline;
+}
+
+.errors{
+    color: rgb(219, 37, 37);
+}
+
+.dialog-button:hover {
+    background-color:rgb(72, 214, 28);
+    transition: 0.4s;
+}
+
+.dialog-button-error:hover {
+    background-color:rgb(172, 23, 23);
+    transition: 0.4s;
+}

@@ -1,0 +1,48 @@
+<div class="search-container">
+    <mat-form-field appearance="standard" id="example-full-width">
+        <mat-label>Nom du dessin:</mat-label>
+        <input class="room-filter" maxlength="20" [(ngModel)]="this.newDrawing" matInput required>
+    </mat-form-field>
+</div>
+<div class="search-container" *ngIf="this.soleOwner">
+    <mat-form-field appearance="standard" id="example-full-width">
+        <mat-label>Propriétaire:</mat-label>
+        <input class="room-filter" value="{{this.userService.getCurrentUsername()}}" matInput readonly>
+    </mat-form-field>
+</div>
+
+<div class="search-container" *ngIf="!this.soleOwner">
+    <mat-form-field appearance="standard" id="example-full-width">
+        <mat-label>Propriétaire:</mat-label>
+        <mat-select [(ngModel)]="this.owner">
+            <mat-option *ngFor="let possibleOwner of this.possibleOwners" [value]="possibleOwner">{{possibleOwner}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+
+<div class="search-container">
+    <mat-form-field appearance="standard" id="example-full-width">
+    <mat-select [(value)]="this.selected">
+        <mat-option value="public">Public</mat-option>
+        <mat-option value="protected">Protégé</mat-option>
+        <mat-option value="private">Privé</mat-option>
+    </mat-select>
+    </mat-form-field>
+</div>
+
+<div class="search-container" *ngIf="this.selected == 'protected'">
+    <p style="text-align: left; font: sans-serif; color: red;" *ngIf="!this.passwordValid">Entrez un mot de passe valide!</p>
+    <mat-form-field appearance="standard" id="example-password">
+        <mat-label>Mot de passe</mat-label>
+        <input class="room-filter" minlength="8" maxlength="32" [(ngModel)]="this.password" matInput required [type]="hide ? 'password' : 'text'" (keypress)="handlePasswordValidity($event)">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon class="pass-icon">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+    </mat-form-field>
+    <mat-icon class="question-icon" (click)="openPasswordhelperDialog()">help_outline</mat-icon>
+</div>
+
+<div class="buttons" [ngStyle]="{'margin-top': ButtonsPlacement()}">
+<p class="cancel-button" (click) ="cancelCreation()">ANNULER</p>
+<p class="create-button"  *ngIf="checkNameValidity()" (click) ="confirmCreation()">CRÉER</p>
+</div>

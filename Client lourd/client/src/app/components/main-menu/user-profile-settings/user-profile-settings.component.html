@@ -1,0 +1,53 @@
+<div class="container" *ngIf="!userProfile && !statisticsProfile && !historyProfile">
+    <div class="profile-container-header" [ngStyle]="{'border-bottom' : '5px solid' + this.themesService.getShadowBox()}">
+        <h1 *ngIf="this.themesService.getCurrentTheme()!= 'light'" style="color:white;">Profil d'utilisateur</h1>
+        <h1 *ngIf="this.themesService.getCurrentTheme() == 'light'" style="color:black;">Profil d'utilisateur</h1>
+    </div>
+
+    <div class="profile-container-content">
+        <div class="user-profile-card" [ngStyle]="{'background': this.themesService.getContainerContentButtonsColor()}">
+            <h1 [ngStyle]="{'text-align': 'center', 'text-decoration': 'underline', 'color': this.themesService.getTextColor()}">Paramètres de compte</h1>
+
+            <div class="user-profile-card-content">
+                <em class="fas fa-user-cog" [ngStyle]="{'color': this.themesService.getTextColor()}"></em>
+                <div class="text-content" [ngStyle]="{'color': this.themesService.getTextColor()}">
+                    L'ensemble des informations du compte et des paramètres de confidentialité
+                </div>
+            </div>
+            <div class="user-profile-card-footer" [ngStyle]="{'background': this.themesService.getContainerFooterButtonsColor(), 'color': this.themesService.getTextColor()}" (click)="userProfile=true; statisticsProfile=false; historyProfile=false">
+                Voir les paramètres de compte
+            </div>
+        </div>
+
+        <div class="statistics-profile-card" [ngStyle]="{'background': this.themesService.getContainerContentButtonsColor()}">
+            <h1 [ngStyle]="{'text-align': 'center', 'text-decoration': 'underline', 'color': this.themesService.getTextColor()}">Statistiques</h1>
+
+            <div class="user-profile-card-content">
+                <em class="fa fa-pie-chart" [ngStyle]="{'color': this.themesService.getTextColor()}"></em>
+                <div class="text-content" [ngStyle]="{'color': this.themesService.getTextColor()}">
+                    Contient les statistiques relatives à l'utilisation de la plateforme de l'utilisateur
+                </div>
+            </div>
+            <div class="user-profile-card-footer" [ngStyle]="{'background': this.themesService.getContainerFooterButtonsColor(), 'color': this.themesService.getTextColor()}" (click)="userProfile=false; statisticsProfile=true; historyProfile=false">
+                Voir les statistiques
+            </div>
+        </div>
+
+        <div class="history-profile-card" [ngStyle]="{'background': this.themesService.getContainerContentButtonsColor()}">
+            <h1 [ngStyle]="{'text-align': 'center', 'text-decoration': 'underline', 'color': this.themesService.getTextColor()}">Historique</h1>
+
+            <div class="user-profile-card-content">
+                <em class="fa fa-history" [ngStyle]="{'color': this.themesService.getTextColor()}"></em>
+                <div class="text-content" [ngStyle]="{'color': this.themesService.getTextColor()}">
+                    Historique détaillée des actions de l'utilisateur (connexion/déconnexions et édition de dessins)
+                </div>
+            </div>
+            <div class="user-profile-card-footer" [ngStyle]="{'background': this.themesService.getContainerFooterButtonsColor(), 'color': this.themesService.getTextColor()}" (click)="userProfile=false; statisticsProfile=false; historyProfile=true">
+                Voir l'historique des éditions de dessins
+            </div>
+        </div>
+    </div>
+</div>
+<app-user-profile *ngIf="userProfile"></app-user-profile>
+<app-statistics-profile *ngIf="statisticsProfile"></app-statistics-profile>
+<app-history-profile *ngIf="historyProfile"></app-history-profile>

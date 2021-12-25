@@ -1,0 +1,81 @@
+<div class="background">
+    <button class="return-login-btn" (click)="goToLoginPage()">
+        <em class="fa fa-reply"></em>
+    </button>
+
+    <mat-card id="main_card">
+        <div id="register">
+            <h1>Création d'un compte</h1>
+        </div>
+        <img id="profile-image" (click)="openAvatarDialog()" src="https://firebasestorage.googleapis.com/v0/b/log3900-102.appspot.com/o/pepe%2Fpeepolove.png?alt=media&token=e2f5c89a-5479-43ae-bf3e-7db3ab7de856"/>
+
+        <div class="form-style" color="blue">
+            <mat-form-field color="warn" appearance="fill"  class="input">
+                <mat-label>Prénom</mat-label>
+                <input [(ngModel)]="this.nameInput" [ngModelOptions]="{standalone: true}" type="name" required matInput (keypress)="handleUserPrivateNamesValidity($event)"/>
+                <span matPrefix>
+                    <mat-icon matPreffix id="icon_inputs">account_box</mat-icon>
+                </span>
+            </mat-form-field>
+
+            <mat-form-field color="warn" appearance="fill"  class="input">
+                <mat-label>Nom</mat-label>
+                <input [(ngModel)]="this.familynameInput" [ngModelOptions]="{standalone: true}" type="familyname" required matInput (keypress)="handleUserPrivateNamesValidity($event)"/>
+                <span matPrefix>
+                    <mat-icon matPreffix id="icon_inputs">account_box</mat-icon>
+                </span>
+            </mat-form-field>
+
+            <mat-form-field color="warn" appearance="fill"  class="input">
+                <mat-label>Courriel</mat-label>
+                <input [(ngModel)]="this.emailInput" [ngModelOptions]="{standalone: true}" type="email" required matInput/>
+                <span matPrefix>
+                    <mat-icon matPreffix id="icon_inputs">email</mat-icon>
+                </span>
+            </mat-form-field>
+
+            <mat-form-field color="warn" appearance="fill"  class="input">
+                <mat-label>Pseudonyme</mat-label>
+                <input [(ngModel)]="this.usernameInput" maxlength="20" [ngModelOptions]="{standalone: true}" type="username" required matInput (keypress)="handleUserNameValidity($event)"/>
+                <span matPrefix>
+                    <mat-icon matPreffix id="icon_inputs">account_circle</mat-icon>
+                </span>
+                <button mat-icon-button matSuffix (click)="openUsernamehelperDialog()">
+                    <mat-icon>help</mat-icon>
+                </button>
+            </mat-form-field>
+                
+            <mat-form-field appearance="fill" floatLabel="always" class="inputPassword">
+                <mat-label>Mot de passe</mat-label>
+                <input [(ngModel)]="this.passwordInput" minlength="8" maxlength="32" [ngModelOptions]="{standalone: true}" required matInput [type]="hide ? 'password' : 'text'" (keypress)="handleUserNameValidity($event)"/>
+                <span matPrefix>
+                    <mat-icon matPreffix id="icon_inputs">lock</mat-icon>
+                </span>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <button mat-icon-button class="helper_icon" (click)="openPasswordhelperDialog()">
+                <mat-icon>help_outline</mat-icon>
+            </button>
+
+            <mat-form-field appearance="fill" floatLabel="always" class="inputPassword">
+                <mat-label>Confirmer mot de passe</mat-label>
+                <input [(ngModel)]="this.passwordConfirmInput" minlength="8" maxlength="32" [ngModelOptions]="{standalone: true}" required matInput [type]="hide2nd ? 'password' : 'text'" (keypress)="handleUserNameValidity($event)"/>
+                <span matPrefix>
+                    <mat-icon matPreffix id="icon_inputs">lock</mat-icon>
+                </span>
+                <button mat-icon-button matSuffix (click)="hide2nd = !hide2nd" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" >
+                    <mat-icon>{{hide2nd ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+
+        <div class="register-div">
+            <button class="register-button" (click)="attemptRegistration()" mat-raised-button color="primary">CRÉER</button>
+        </div>
+    </mat-card>
+</div>
+
+

@@ -1,0 +1,75 @@
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer position="end" class="example-sidenav" mode="over" [ngStyle]="{'background': this.themesService.getInverseTextColor()}">
+        <app-chat> </app-chat>
+    </mat-drawer>
+
+    <div class="gallery-dessin">
+        <div class="sidenav" [ngStyle]="{'background': this.themesService.getMenuSideNavColor()}">
+            <div class="avatar"></div>
+            <button id="galerie" class="main-buttons button-active" [ngStyle]="{'background': this.themesService.getContainerContentButtonsColor(), 'color': this.themesService.getTextColor()}" (click)="this.gallery = true; this.teams = false; this.profile = false; updateGallery(); updateFocused()"> Galerie </button>
+            <button id="equipes" class="main-buttons" [ngStyle]="{'background': this.themesService.getContainerContentButtonsColor(), 'color': this.themesService.getTextColor()}" (click)="this.gallery = false; this.teams = true; this.profile = false; updateFocused()"> Équipes </button>
+            <button id="profil" class="main-buttons" [ngStyle]="{'background': this.themesService.getContainerContentButtonsColor(), 'color': this.themesService.getTextColor()}" (click)="this.gallery = false; this.teams = false; this.profile = true; updateFocused()"> Profile </button>
+            <button class="main-buttons" [ngStyle]="{'background': this.themesService.getContainerContentButtonsColor(), 'color': this.themesService.getTextColor()}" (click)="openThemes()"> Thèmes </button>
+            <button class="disconnect-button" [ngStyle]="{'background': this.themesService.getContainerContentButtonsColor(), 'color': this.themesService.getTextColor()}" (click)="this.gallery = false; this.teams = false; this.profile = false; logout();"> Déconnexion </button>
+        </div>
+
+        <div class="container" [ngStyle]="{'background': this.themesService.getMenuContainerColor()}">
+            <button *ngIf="!this.chatService.getChatType()" class="example-sidenav-content" mat-button type="button" (click)="drawer.toggle();">
+                <mat-icon>chat</mat-icon>
+            </button>
+
+            <div class="gallery-container" *ngIf="gallery" [@inOutAnimation] [ngStyle]="{'background': this.themesService.getMenuContainerContentColor(), 'box-shadow' : '1px 1px 20px' + this.themesService.getShadowBox()}">
+                <div class="gallery-container-header" [ngStyle]="{'border-bottom' : '5px solid' + this.themesService.getShadowBox()}">
+                    <h1 *ngIf="this.themesService.getCurrentTheme()!= 'light'" style="color:white;">Galerie de dessin</h1>
+                    <h1 *ngIf="this.themesService.getCurrentTheme() == 'light'" style="color:black;">Galerie de dessin</h1>
+                    <button  class="addDrawing-btn" matTooltip="Créer un dessin" matTooltipPosition="left" (click)="openCreateDrawingDialog()">
+                        <em class="fas fa-plus"></em>
+                    </button>
+                </div>
+
+                <div class="gallery-container-filter">
+                    <mat-form-field appearance="standard" id="filter-input">
+                        <input matInput [(ngModel)]="this.filterSearch" placeholder="Filter la gallerie" (keyup)="updateAvailableDrawings($event)" [ngStyle]="{'color': this.themesService.getTextColor()}">
+                        <mat-icon matSuffix [ngStyle]="{'color': this.themesService.getTextColor()}">search</mat-icon>
+                    </mat-form-field>
+                </div>
+
+                <div class="gallery-container-content" *ngIf="this.drawings.length != 0">
+                    <ng-container *ngFor="let drawing of this.drawings">
+                        <mat-card [ngStyle]="{'background': this.themesService.getContainerContentButtonsColor(), 'color': this.themesService.getTextColor()}" (click) = "attemptDrawingJoin(drawing)">
+                            <img class="img" mat-card-image src= "{{ drawing.preview }}">
+                            <mat-card-content>
+                                <div class="first-row">
+                                    <span class="title"> {{ drawing.name }} </span>
+                                    
+                                    <div *ngIf="filterGalleryPrivacyIcon(drawing) == 0" class="icon" matTooltip="Public" matTooltipPosition="right"><span class="fas fa-user-alt"></span></div>
+                                    <div *ngIf="filterGalleryPrivacyIcon(drawing) == 1" class="icon" matTooltip="Protégé" matTooltipPosition="right"><span class="fas fa-lock"></span></div>
+                                    <div *ngIf="filterGalleryPrivacyIcon(drawing) == 2" class="icon" matTooltip="Privé" matTooltipPosition="right"><span class="fas fa-user-lock"></span></div>
+                                </div>
+        
+                                <div class="second-row">
+                                    <img mat-card-avatar class="avatar-image" *ngIf="drawing.team != undefined" src="https://firebasestorage.googleapis.com/v0/b/log3900-102.appspot.com/o/unknown.png?alt=media&token=f329761c-a980-4156-a7e7-62d266ee89d1">
+                                    <img mat-card-avatar class="avatar-image" *ngIf="drawing.team == undefined" src="{{ drawing.avatar }}">
+                                    <span class="auteur" *ngIf="drawing.team != undefined">{{ drawing.team }}</span>
+                                    <span class="auteur" *ngIf="drawing.team == undefined">{{ drawing.owner }}</span>
+                                </div>
+        
+                                <div class="third-row">
+                                    <span class="nb-collaborateurs"> {{ drawing.nbCollaborateurs }} utilisateurs actifs</span>
+                                    <span class="date"> {{ getRealDate(drawing.creationTimestamp) }} </span>
+                                </div>
+                            </mat-card-content>
+                        </mat-card>
+                    </ng-container>
+                </div>
+                <div class="empty-gallery-content" *ngIf="this.drawings.length == 0">
+                    <span class="empty-gallery" [ngStyle]="{'color': this.themesService.getTextColor()}"> La galerie ne contient aucun dessin !</span>
+                </div>
+            </div>
+
+            <app-collaboration-teams *ngIf="teams" class="gallery-container" [@inOutAnimation] [ngStyle]="{'background': this.themesService.getMenuContainerContentColor(), 'box-shadow' : '1px 1px 20px' + this.themesService.getShadowBox()}"></app-collaboration-teams>
+            <app-user-profile-settings *ngIf="profile" class="gallery-container" [@inOutAnimation] [ngStyle]="{'background': this.themesService.getMenuContainerContentColor(), 'box-shadow' : '1px 1px 20px' + this.themesService.getShadowBox()}"></app-user-profile-settings>
+        </div>
+
+    </div>
+</mat-drawer-container>

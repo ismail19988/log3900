@@ -1,0 +1,53 @@
+.search-container {
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.room-filter {
+    color: #000000;
+}
+
+.chatbox__rooms {
+    background-color: #6200ee;
+    border: 1px solid black;
+    margin-bottom: 2%;
+    border-radius: 5px;
+    word-break: break-all;
+    mat-icon{
+        color: rgb(47, 233, 22);
+        float: right;
+        margin-top: 2%;
+    }
+    mat-icon:hover {
+        color: rgb(192, 0, 0);
+    }
+}
+
+.chatbox__rooms:hover {
+    transform: scale(1.1,1.1);
+    background-color: rgb(0, 198, 212);
+    cursor: pointer;
+}
+
+p {
+    text-align: center;
+    margin: -0.25em 2em;
+    font-size: 1em;
+    font-weight: 700;
+    color: rgb(0, 0, 0);
+    width: auto;
+    padding: 5%;
+}
+
+
+::ng-deep .mat-form-field-label{
+    color: #000000 !important;
+}
+::ng-deep .mat-focused .mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color: #000000 !important;;
+}
+

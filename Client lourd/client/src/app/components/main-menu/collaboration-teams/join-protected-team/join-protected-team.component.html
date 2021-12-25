@@ -1,0 +1,14 @@
+<h1 style="text-align: left; font: sans-serif; color: rgb(0, 0, 0);">Cette équipe de collaboration est protégé!</h1>
+
+<div class="pass-container">
+    <mat-form-field class="example-full-width">
+        <input class="pass-search" [(ngModel)]="this.password" [type]="hide ? 'password' : 'text'" matInput placeholder="Entrer le mot de passe" (keypress)="handleKeypress($event)" required>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon class="pass-icon">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+    </mat-form-field>
+    <p style="text-align: left; font: sans-serif; color: red;" *ngIf="!this.passwordValidity">Le mot de passe est incorrect!</p>
+</div>
+
+<p class="cancel-button" (click) ="cancelJoin()">ANNULER</p>
+<p class="join-button" *ngIf="this.password !== ''" (click) ="validatePassword()">REJOINDRE</p>

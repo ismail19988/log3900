@@ -1,0 +1,100 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
+
+
+html { 
+    background-color: #263238 ;
+    height: 100%;
+}
+
+body { 
+    overflow: hidden;
+    margin: 0px;
+    height: 100%;
+}
+
+//=======================================================
+
+//POUR LES THEMES
+.themes-modal-blue {
+    mat-dialog-container {
+        background-color: #66B2FF;
+    }
+}
+.themes-modal-orange {
+    mat-dialog-container {
+        background-color: #FFB266;
+    }
+}
+.themes-modal-light {
+    mat-dialog-container {
+        background-color: #FFFFFF;
+    }
+}
+.themes-modal-dark {
+    mat-dialog-container {
+        background-color: #606060;
+    }
+}
+
+//=======================================================
+
+.register-helper-dialog {
+    mat-dialog-container {
+        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 30%, rgba(36,163,189,1) 100%);
+    }
+}
+
+.register-error-dialog {
+    mat-dialog-container {
+        background: linear-gradient(to bottom left, #f83600ca, #f9d423);
+    }
+}
+
+.register-avatars-dialog {
+    mat-dialog-container {
+        background-color: #522eca;
+    }
+}
+
+.search-room-dialog {
+    mat-dialog-container {
+        background-color: rgb(255, 255, 255);
+    }
+}
+
+.add-room-dialog {
+    mat-dialog-container {
+        background-color: rgb(255, 255, 255);
+        overflow: hidden;
+    }
+}
+
+.password-check-dialog {
+    mat-dialog-container {
+        background-color: rgb(255, 255, 255);
+        overflow: hidden;
+    }
+}
+
+.create-drawing-dialog {
+    mat-dialog-container {
+        background-color: rgb(255, 255, 255);
+        overflow: hidden;
+    }
+}
+
+.create-team-dialog {
+    mat-dialog-container {
+        background-color: rgb(255, 255, 255);
+        overflow: hidden;
+    }
+}
+
+.change-username-dialog {
+    mat-dialog-container {
+        background: linear-gradient(90deg, rgb(24, 24, 139) 0%, rgb(56, 56, 179) 30%, rgba(36,163,189,1) 100%);
+        overflow: hidden;
+    }
+}
+

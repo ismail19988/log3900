@@ -1,0 +1,13 @@
+<h1 style="text-align: left; font: sans-serif; color: rgb(0, 0, 0);">Entrez votre nouveau pseudonyme:</h1>
+
+<div class="search-container">
+    <mat-form-field class="example-full-width">
+        <input class="room-filter"  maxlength="20" [(ngModel)]="this.newUsername" type="username" matInput placeholder="Entrez ici" (keypress)="handleUserNameValidity($event); checkNameValidity();">
+        <button mat-icon-button matSuffix (click)="openUsernamehelperDialog()">
+            <mat-icon class="room-filter">help</mat-icon>
+        </button>
+    </mat-form-field>
+</div>
+
+<p class="cancel-button" (click) ="cancelCreation()">ANNULER</p>
+<p class="create-button" *ngIf="this.validUsername" (click) ="confirmCreation()">APPLIQUER</p>

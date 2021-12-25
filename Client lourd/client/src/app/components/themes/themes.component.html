@@ -1,0 +1,9 @@
+<h1 *ngIf="this.themesService.getCurrentTheme()!= 'light'" style="color:white; font-family: sans-serif; font-weight: bold; text-align: center; text-decoration: underline;">Choisissez votre thème</h1>
+<h1 *ngIf="this.themesService.getCurrentTheme() == 'light'" style="color:black; font-family: sans-serif; font-weight: bold; text-align: center; text-decoration: underline;">Choisissez votre thème</h1>
+
+<div class="flex-container">
+    <div [ngStyle]="{'background-color': '#3399FF'}" (click)="updateTheme('blue')" matTooltip="Bleuté" matTooltipPosition="right"></div>
+    <div [ngStyle]="{'background-color': '#FF9933'}" (click)="updateTheme('orange')" matTooltip="Orangé" matTooltipPosition="right"></div>
+    <div [ngStyle]="{'background-color': '#E0E0E0'}"  (click)="updateTheme('light')" matTooltip="Éclairé" matTooltipPosition="right"></div>  
+    <div [ngStyle]="{'background-color': '#303030'}"  (click)="updateTheme('dark')" matTooltip="Sombre" matTooltipPosition="right"></div>
+</div>

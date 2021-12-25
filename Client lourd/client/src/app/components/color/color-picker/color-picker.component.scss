@@ -1,0 +1,44 @@
+span{
+    color:#607D8B;
+}
+
+canvas{
+    width : 15px;
+    height : 200px;
+}
+
+input{
+    width : 18px;
+}
+
+#alphaInput {
+    width: 30px;
+}
+.small{
+    font-size: 12px;
+}
+
+.left{
+    float : left;
+    margin-left: 10px;
+}
+.right{
+    float : right;
+    margin-right: 10px;
+}
+
+#r{
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+#b{
+    margin-left: 12px;
+}
+
+:host {             // host targets selector: 'home'
+    display: block;
+    float:left;
+    width: 100px;    // takes parent width        
+    height: 200px;   // takes parent height    
+}
