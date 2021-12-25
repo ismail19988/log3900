@@ -1,0 +1,4 @@
+before_script:
+  - cd ./Serveur
+include:
+  - local: '/Serveur/.gitlab-ci.yml'
