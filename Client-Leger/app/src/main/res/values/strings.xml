@@ -1,0 +1,72 @@
+<resources>
+    <string name="app_name">ColorImage</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_activity_main">MainActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_email">Format de courriel invalide</string>
+    <string name="invalid_password">Mot de passe requis!</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="login_account_invalid">Courriel ou mot de passe invalide!</string>
+    <string name="connection_error">Problème de connexion avec le serveur</string>
+    <string name="user_already_connected_error">L\'utilisateur est déjà connecté!</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Strings related to register -->
+    <string name="no_lowercase_password">Le mot de passe doit contenir au moins une minuscule.</string>
+    <string name="no_uppercase_password">Le mot de passe doit contenir au moins une majuscule.</string>
+    <string name="no_digit_password">Le mot de passe doit contenir au moins un chiffre.</string>
+    <string name="too_small_password">Le mot de passe doit contenir au moins 8 caractères.</string>
+    <string name="confirm_password_no_match">Les mots de passes ne correspondent pas.</string>
+    <string name="first_name_empty">Le prénom ne peut être vide.</string>
+    <string name="last_name_empty">Le nom ne peut être vide.</string>
+    <string name="username_empty">Le pseudonyme ne peut être vide.</string>
+    <string name="username_already_exists">Ce pseudonyme est déjà utilisé.</string>
+    <string name="email_already_exists">Ce courriel est déjà utilisé.</string>
+    <string name="database_error">Un problème est survenu dans la base de données.</string>
+    <string name="unknown_error">Un problème est survenu.</string>
+
+    <!-- Change value of the color picker library -->
+    <string name="press_color_to_apply">Appuyer sur la couleur voulue</string>
+    <string name="historyCardDetail">Historique détaillé des actions de l\'utilisateur (connexions/déconnexions et édition de dessins)</string>
+    <string name="historyCardSubText">Voir l\'historique des éditions de dessins</string>
+    <string name="statisticCardSubText">Voir les statistiques</string>
+    <string name="staticticCardDetail">Contient les statistiques relatives à l\'utilisation de la plateforme par l\'utilisateur</string>
+    <string name="accountSettingsCardSubText">Voir les paramètres de compte</string>
+    <string name="accountSettingsCardDetail">L\'ensemble des informations du compte et des paramètres de confidentialité</string>
+
+    <string name="noInformation">N/A</string>
+    <string name="titreParamCompte"><u>Paramètre de compte</u></string>
+    <string name="titreStatistique"><u>Statistique</u></string>
+    <string name="titreHistorique"><u>Historique</u></string>
+
+    <string name="bioTeam"><u>Bio de l\'équipe :</u></string>
+    <string name="teamMember"><u>Membres de l\'équipe :</u></string>
+    <string name="createAccountText"><u>Ou créer un compte ici!</u></string>
+
+    <plurals name="numberTeams">
+        <item quantity="one">%d équipe</item>
+        <item quantity="other">%d équipes</item>
+    </plurals>
+    <plurals name="numberDrawing">
+        <item quantity="one">%d dessin</item>
+        <item quantity="other">%d dessins</item>
+    </plurals>
+    <plurals name="numberCollaborators">
+        <item quantity="one">%d utilisateur actif</item>
+        <item quantity="other">%d utilisateurs actifs</item>
+    </plurals>
+</resources>

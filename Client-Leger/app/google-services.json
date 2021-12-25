@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "651095380030",
+    "project_id": "log3900-102",
+    "storage_bucket": "log3900-102.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:651095380030:android:534e3504883ec5abda816f",
+        "android_client_info": {
+          "package_name": "com.zouatene.colorimage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "651095380030-ik0435jg7sec2rp6tq27bkksov2hu775.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbv38jWf3dH5nKQiK7NXbYxXuHR8Db6QA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "651095380030-ik0435jg7sec2rp6tq27bkksov2hu775.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

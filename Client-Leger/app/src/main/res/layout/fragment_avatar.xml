@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".access.AvatarFragment">
+
+        <FrameLayout
+            android:id="@+id/image_logo"
+            android:layout_width="131dp"
+            android:layout_height="132dp"
+            android:layout_gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_pic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:src="@drawable/default_avatar_1" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/cameraButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="top|right"
+                app:srcCompat="@drawable/camera_btn" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/editAvatarButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom|right"
+                app:srcCompat="@drawable/image_collections_btn" />
+        </FrameLayout>
+    </FrameLayout>
+</layout>

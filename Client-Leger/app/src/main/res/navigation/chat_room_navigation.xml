@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/chat_room_navigation"
+    app:startDestination="@id/roomListFragment">
+
+    <fragment
+        android:id="@+id/roomListFragment"
+        android:name="com.zouatene.colorimage.chat.RoomListFragment"
+        android:label="RoomListFragment" >
+        <action
+            android:id="@+id/action_roomListFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.zouatene.colorimage.chat.ChatFragment"
+        android:label="ChatFragment" />
+</navigation>
